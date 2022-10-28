@@ -27,3 +27,6 @@
 @import url('../blocks/photos/__image/photo__image.css');
 @import url('../blocks/photos/__title/photos__title.css');
 @import url('../blocks/photos/__box/photos__box.css');
+
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__copyright/footer__copyright.css');
