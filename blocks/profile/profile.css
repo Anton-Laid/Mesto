@@ -1,0 +1,22 @@
+.profile {
+    width: 282px;
+    height: 288px;
+    margin: 42px 19px 36px;
+    color: #FFFFFF;
+}
+
+@media (min-width:340px) {
+    .profile {
+        margin: auto;
+    }
+}
+
+@media (min-width:1024px) {
+    .profile {
+        margin-top: 36.25px;
+        width: 880px;
+        height: 120px;
+        display: flex;
+        flex-direction: row;
+    }
+}
