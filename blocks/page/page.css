@@ -1,0 +1,26 @@
+.page {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    width: 320px;
+    margin: 0 auto;
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .page {
+        width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .page {
+        width: 1024px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .page {
+        width: 1280px;
+    }
+}
