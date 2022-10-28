@@ -1,13 +1,13 @@
 .profile {
     width: 282px;
     height: 288px;
-    margin: 42px 19px 36px;
+    margin: 42px auto 0;
     color: #FFFFFF;
 }
 
 @media (min-width:340px) {
     .profile {
-        margin: auto;
+        margin: 42px auto;
     }
 }
 

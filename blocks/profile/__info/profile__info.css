@@ -8,8 +8,8 @@
 
 @media (min-width:1280px) {
     .profile__info {
-        margin: 22px 0 25px 29px;
-        width: 366px;
+        margin: 22px 0 25px 35px;
+        width: 336px;
         height: 73px;
     }
 }
