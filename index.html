@@ -73,6 +73,7 @@
                         <h2 class="photos__title">Ковчег</h2>
                         <div class="photo__heart"></div>
                     </div>
+
                 </div>
             </section>
         </main>
@@ -81,18 +82,28 @@
         </footer>
     </div>
 
-    <script src="index.js"></script>
+    <div class="popup">
 
-    <div class="form">
-        <h1 class="from__title">Редактировать профиль</h1>
-        <input class="from__field" type="text">
-        <input class="from__field" type="text">
-        <button class="from__button">Сохранить</button>
+        <form class="popup__contant">
+
+            <p class="popup__title">Редактировать профиль</p>
+
+            <div class="popup__input">
+                <input class="popup__input-text popup__type_name" type="text" value="Жак-Ив Кусто">
+            </div>
+
+            <div class="popup__input">
+                <input class="popup__input-text popup__type_job" type="text" value="Исследователь океана">
+            </div>
+
+            <div class="popup__buttom_close"></div>
+
+            <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+
     </div>
 
-
-
-
+    <script src="index.js" defer></script>
 </body>
 
 </html>

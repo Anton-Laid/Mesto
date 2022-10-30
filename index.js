@@ -1,11 +1,3 @@
-<<<<<<< Updated upstream
-let open = document.querySelector('.profile__rectangle');
-let popup = document.querySelector('.');
-let close = document.querySelector('.');
-let formElement = document.querySelector('.');
-let Input = document.querySelector('.');
-let value = document.querySelector('.');
-=======
 const aboutElem = document.querySelector('.profile__rectangle');
 const popupElem = document.querySelector('.popup');
 const popupCloseElem = popupElem.querySelector('.popup__buttom_close');
@@ -54,8 +46,3 @@ buttom.addEventListener('click', () => {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 
-
-
-
-
->>>>>>> Stashed changes
