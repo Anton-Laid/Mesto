@@ -28,7 +28,7 @@ input (для строк ввода);
 2. Добавить еще странницу с общей лентой для всех пользователей. 
 3. Подключить сайт к серверу.
 
-Ссылка на Github: https://github.com/Fra1zed/Mesto
 
-Рабочий сайт: https://fra1zed.github.io/Mesto/
->>>>>>> Stashed changes
+
+
+
