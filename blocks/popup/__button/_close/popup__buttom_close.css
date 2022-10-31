@@ -9,6 +9,14 @@
     cursor: pointer;
 }
 
+<<<<<<< Updated upstream:blocks/popup/__button/_close/popup__buttom_close.css
+=======
+.popup__buttom-close:hover {
+    opacity: .6;
+    cursor: pointer;
+  }
+
+>>>>>>> Stashed changes:blocks/popup/__close-buttom/popup__buttom-close.css
 @media (min-width:1280px) {
     .popup__buttom_close {
         width: 32px;
