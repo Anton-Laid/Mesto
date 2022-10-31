@@ -1,4 +1,4 @@
-.popup__contant {
+.popup__form {
     width: 282px;
     height: 322px;
     background-color: #fff;
@@ -10,7 +10,7 @@
 }
 
 @media (min-width:1280px) {
-    .popup__contant {
+    .popup__form {
         width: 430px;
         height: 350px;
     }
