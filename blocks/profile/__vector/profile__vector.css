@@ -1,13 +1,13 @@
 .profile__vector {
-    width: 7.5px;
-    height: 7.5px;
-    margin: 6px 5px;
+    width: 8px;
+    height: 8px;
+    margin: 3px -5px;
 }
 
 @media (min-width:1024px) {
     .profile__vector {
         width: 10px;
         height: 10px;
-        margin: 7px;
+        margin: 0;
     }
 }

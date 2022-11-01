@@ -1,18 +1,17 @@
-.popup__contant {
+.popup__form {
     width: 282px;
     height: 350px;
     background-color: #fff;
     border-radius: 10px;
-    margin: 195px auto 0;
+    margin: auto;
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
 @media (min-width:1280px) {
-    .popup__contant {
+    .popup__form {
         width: 430px;
         height: 350px;
-
     }
 }

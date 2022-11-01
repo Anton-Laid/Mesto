@@ -12,65 +12,65 @@
 <body class="body">
     <div class="page">
         <header class="header">
-            <img src="images/Vector.png" alt="Логотип" class="header__logo">
+            <img src="images/logo.svg" alt="Логотоип" class="header__logo">
         </header>
         <main class="content">
             <section class="profile">
                 <div class="profile__image"></div>
-                <ul class="profile__info">
-                    <li>
-                        <h2 class="profile__title">Жак-Ив Кусто</h2>
-                    </li>
-                    <li>
-                        <p class="profile__subtitl">Исследователь океана</p>
-                    </li>
-                    <li class="profile__rectangle"><img src="images/Vector__pensol.png" alt="карандаш"
-                            class="profile__vector"></li>
-                </ul>
+                <div class="profile__info">
+                    <div>
+                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    </div>
+                    <div>
+                        <p class="profile__subtitle">Исследователь океана</p>
+                    </div>
+                    <button class="profile__rectangle"><img src="images/Vector__pensol.png" alt="карандаш"
+                            class="profile__vector"></button>
+                </div>
                 <button class="profile__button"><img src="images/Vector__plus.png" alt="Плюс">
                 </button>
             </section>
             <section class="photos">
                 <div class="photo">
-                    <img src="images/kirill-pershin.jpg" alt="Фото" class="photo__image">
-                    <div class="photos__box">
-                        <h2 class="photos__title">Карачаевск</h2>
-                        <div class="photo__heart"></div>
+                    <img src="images/kirill-pershin.jpg" alt="Карачаевск" class="photo__image">
+                    <div class="photo__box">
+                        <h2 class="photo__title">Карачаевск</h2>
+                        <button class="photo__heart"></button>
                     </div>
                 </div>
                 <div class="photo">
-                    <img src="images/kirill-pershin-zak.jpg" alt="Фото" class="photo__image">
-                    <div class="photos__box">
-                        <h2 class="photos__title">Гора Эльбрус, самая красивая гора в мире</h2>
-                        <div class="photo__heart"></div>
+                    <img src="images/kirill-pershin-zak.jpg" alt="Гора Эльбруc" class="photo__image">
+                    <div class="photo__box">
+                        <h2 class="photo__title">Гора Эльбрус, самая красивая гора в мире</h2>
+                        <button class="photo__heart"></button>
                     </div>
                 </div>
                 <div class="photo">
-                    <img src="images/kirill-pershin-gor.jpg" alt="Фото" class="photo__image">
-                    <div class="photos__box">
-                        <h2 class="photos__title">Домбай</h2>
-                        <div class="photo__heart"></div>
+                    <img src="images/kirill-pershin-gor.jpg" alt="Домбай" class="photo__image">
+                    <div class="photo__box">
+                        <h2 class="photo__title">Домбай</h2>
+                        <button class="photo__heart"></button>
                     </div>
                 </div>
                 <div class="photo">
-                    <img src="images/photo-city.jpg" alt="Фото" class="photo__image">
-                    <div class="photos__box">
-                        <h2 class="photos__title">Бруклин</h2>
-                        <div class="photo__heart"></div>
+                    <img src="images/photo-city.jpg" alt="Бруклин" class="photo__image">
+                    <div class="photo__box">
+                        <h2 class="photo__title">Бруклин</h2>
+                        <button class="photo__heart"></button>
                     </div>
                 </div>
                 <div class="photo">
-                    <img src="images/photo-opt.jpg" alt="Фото" class="photo__image">
-                    <div class="photos__box">
-                        <h2 class="photos__title">Осень</h2>
-                        <div class="photo__heart"></div>
+                    <img src="images/photo-opt.jpg" alt="Осень" class="photo__image">
+                    <div class="photo__box">
+                        <h2 class="photo__title">Осень</h2>
+                        <button class="photo__heart"></button>
                     </div>
                 </div>
                 <div class="photo">
-                    <img src="images/photo-art.jpg" alt="Фото" class="photo__image">
-                    <div class="photos__box">
-                        <h2 class="photos__title">Ковчег</h2>
-                        <div class="photo__heart"></div>
+                    <img src="images/photo-art.jpg" alt="Ковчег" class="photo__image">
+                    <div class="photo__box">
+                        <h2 class="photo__title">Ковчег</h2>
+                        <button class="photo__heart"></button>
                     </div>
 
                 </div>
@@ -83,26 +83,28 @@
 
     <div class="popup">
 
-        <form class="popup__contant">
+        <form class="popup__form">
 
             <p class="popup__title">Редактировать профиль</p>
 
-            <div class="popup__input">
-                <input class="popup__input-text popup__type-name" type="text" value="Жак-Ив Кусто">
-            </div>
+            <input class="popup__input popup__type-name" type="text" value="Жак-Ив Кусто">
 
-            <div class="popup__input">
-                <input class="popup__input-text popup__type-job" type="text" value="Исследователь океана">
-            </div>
+            <input class="popup__input popup__type-job" type="text" value="Исследователь океана">
 
             <div class="popup__buttom-close"></div>
-
+            <!-- это крестик для попапа, если я кго удалю, крестик пропадет. Но
+            если я меняю div на buttom, то появляется у рестика белый фон и пылася его бруть, но бузуспешно(((
+            border: 0;
+            border: none;
+            background: transparent;
+            background-color: transparent; это не помогает
+            border-color: transparent; -->
             <button class="popup__button" type="submit">Сохранить</button>
         </form>
-
     </div>
 
-    <script src="index.js" defer></script>
+
+    <script src="scripts/index.js" defer></script>
 </body>
 
 </html>
