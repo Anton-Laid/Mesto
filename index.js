@@ -7,8 +7,8 @@ const popupCloseElem = popupElem.querySelector('.popup__buttom-close');
 
 let contantElement = document.querySelector('.popup__contant');
 let buttom = document.querySelector('.popup__button');
-let nameInput = document.querySelector('.popup__type_name');
-let jobInput = document.querySelector('.popup__type_job');
+let nameInput = document.querySelector('.popup__type-name');
+let jobInput = document.querySelector('.popup__type-job');
 let title = document.querySelector('.profile__title');
 let subtitl = document.querySelector('.profile__subtitl');
 

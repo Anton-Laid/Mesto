@@ -1,11 +1,11 @@
-.rofile__vector {
+.profile__vector {
     width: 7.5px;
     height: 7.5px;
     margin: 6px 5px;
 }
 
 @media (min-width:1024px) {
-    .rofile__vector {
+    .profile__vector {
         width: 10px;
         height: 10px;
         margin: 7px;
