@@ -1,6 +1,6 @@
 .photo__box {
     width: 246px;
-    height: 29px;
+    height: 33px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
