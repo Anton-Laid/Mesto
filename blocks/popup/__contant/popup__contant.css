@@ -1,6 +1,6 @@
 .popup__contant {
     width: 282px;
-    height: 322px;
+    height: 350px;
     background-color: #fff;
     border-radius: 10px;
     margin: 195px auto 0;
@@ -13,5 +13,6 @@
     .popup__contant {
         width: 430px;
         height: 350px;
+
     }
 }

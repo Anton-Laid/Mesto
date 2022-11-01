@@ -1,6 +1,6 @@
 const aboutElem = document.querySelector('.profile__rectangle');
 const popupElem = document.querySelector('.popup');
-const popupCloseElem = popupElem.querySelector('.popup__buttom_close');
+const popupCloseElem = popupElem.querySelector('.popup__buttom-close');
 
 aboutElem.addEventListener('click', () => {
     popupElem.classList.add('popup__opened');
@@ -16,6 +16,7 @@ popupElem.addEventListener('click', (event) => {
         popupElem.classList.remove('popup__opened');
     }
 })
+
 ////////////////////////////////////////////////////////
 
 // Находим форму в DOM
@@ -42,7 +43,3 @@ contantElement.addEventListener('submit', formSubmitHandler);
 buttom.addEventListener('click', () => {
     popupElem.classList.remove('popup__opened');
 });
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-
