@@ -1,12 +1,14 @@
 .photo__heart {
     background-image: url(../../../images/heart.png);
-    max-width: 22px;
-    max-height: 19px;
+    width: 22px;
+    height: 19px;
+    background-color: none;
     background-size: cover;
     background-position: center;
     margin: 5px 5px 0 0;
     cursor: pointer;
     border: none;
+    background-color: transparent;
 }
 
 .photo__heart:hover {
