@@ -5,13 +5,14 @@
     background-color: black;
     color: #fff;
     font-family: 'Inter', Arial, sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 22px;
+    line-height: 17px;
     letter-spacing: 0em;
     text-align: center;
     border-radius: 2px;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .popup__button:hover {
@@ -22,5 +23,8 @@
     .popup__button {
         width: 358px;
         height: 50px;
+        font-size: 18px;
+        line-height: 22px;
+        margin: 18px 36px 37px;
     }
 }

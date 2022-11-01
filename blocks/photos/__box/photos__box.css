@@ -1,8 +1,7 @@
 .photos__box {
     width: 246px;
-    height: 29px;
+    margin: 23px 0 31px 21px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 24px 0 30px 21px;
 }

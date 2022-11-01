@@ -1,15 +1,16 @@
-.popup__buttom_close {
+.popup__buttom-close {
     background-image: url(../../../../images/Close.png);
     width: 20px;
     height: 20px;
     position: absolute;
-    top: -19px;
-    right: 19px;
+    background-size: cover;
+    top: -35px;
+    right: 0px;
     cursor: pointer;
 }
 
 @media (min-width:1280px) {
-    .popup__buttom_close {
+    .popup__buttom-close {
         width: 32px;
         height: 32px;
         top: -40px;
