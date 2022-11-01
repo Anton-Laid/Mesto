@@ -21,7 +21,6 @@ popupCloseElem.addEventListener('click', () => {
     popupElem.classList.remove('popup__opened');
 });
 
-
 popupElem.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
         popupElem.classList.remove('popup__opened');
