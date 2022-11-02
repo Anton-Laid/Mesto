@@ -11,8 +11,7 @@
     letter-spacing: 0em;
     text-align: left;
     outline-color: #08bbe8;
-    margin: 0 auto;
-    margin-bottom: 30px;
+    margin: 0 22px 30px;
 }
 
 .popup__input:nth-of-type(2) {
@@ -22,5 +21,6 @@
 @media (min-width:1280px) {
     .popup__input {
         width: 358px;
+        margin: 0 36px 30px;
     }
 }

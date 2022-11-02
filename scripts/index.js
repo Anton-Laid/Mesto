@@ -5,7 +5,7 @@ const popupCloseElem = popupElem.querySelector('.popup__buttom-close');
 
 // Переменные для pupup
 
-let contantElement = document.querySelector('.popup__form');
+let contantElement = document.querySelector('.form');
 let buttom = document.querySelector('.popup__button');
 let nameInput = document.querySelector('.popup__type-name');
 let jobInput = document.querySelector('.popup__type-job');

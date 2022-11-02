@@ -7,11 +7,8 @@
     top: -35px;
     right: 0;
     cursor: pointer;
-    /* border: 0; */
-    /* border: none; */
-    /* background: transparent; */
-    /* background-color: transparent; это не помогает  */
-    /* border-color: transparent;  */
+    Background-color: rgba(0, 0, 0, 0);
+    border: none;
 }
 
 .popup__buttom-close:hover {
