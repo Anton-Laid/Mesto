@@ -1,0 +1,18 @@
+.photo__removel {
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    background-image: url(../../../images/Urn.png);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    transition: 0.3s;
+}
+
+.photo__removel:hover {
+    opacity: .5;
+    /* transform: scale(1.3); */
+}

@@ -21,3 +21,9 @@
         margin: 0 0 60px 200px;
     }
 }
+
+@media (min-width: 1300px) {
+    .footer {
+        margin: auto;
+    }
+}

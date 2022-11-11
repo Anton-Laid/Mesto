@@ -1,0 +1,11 @@
+.popup-foto__images {
+    width: 240px;
+    height: 300px;
+}
+
+@media (min-width: 1024px) {
+    .popup-foto__images {
+        width: 433px;
+        height: 540px;
+    }
+}

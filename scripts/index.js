@@ -1,45 +1,123 @@
-// Переменные для input
-const aboutElem = document.querySelector('.profile__rectangle');
-const popupElem = document.querySelector('.popup');
-const popupCloseElem = popupElem.querySelector('.popup__buttom-close');
+//  Отрытие popup 
 
-// Переменные для pupup
+function openPopupUser() {
+    popupUser.classList.add('popup_opened');
+}
 
-let contantElement = document.querySelector('.form');
-let buttom = document.querySelector('.popup__button');
-let nameInput = document.querySelector('.popup__type-name');
-let jobInput = document.querySelector('.popup__type-job');
-let title = document.querySelector('.profile__title');
-let subtitl = document.querySelector('.profile__subtitle');
+function popupFotoSeve() {
+    popupFotoSev.classList.add('popup_opened');
+}
 
-//  input
+// Закрытие popup
 
-aboutElem.addEventListener('click', () => {
-    popupElem.classList.add('popup_opened');
-});
+function clocePopup() {
+    popupUser.classList.remove('popup_opened');
+}
 
-popupCloseElem.addEventListener('click', () => {
-    popupElem.classList.remove('popup_opened');
-});
+function closePopupFoto() {
+    popupFotoSev.classList.remove('popup_opened');
+}
 
-
-popupElem.addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-        popupElem.classList.remove('popup_opened');
+function deletPopupUser(evt) {
+    if (evt.target === evt.currentTarget) {
+        popupUser.classList.remove('popup_opened');
     }
-})
+}
 
-//  pupup
+function deletPopupSeveFoto(evt) {
+    if (evt.target === evt.currentTarget) {
+        popupFotoSev.classList.remove('popup_opened');
+    }
+}
+
+
+
+// Передача popup = user
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
-
-    title.textContent = nameInput.value;
-    subtitl.textContent = jobInput.value;
-
+    profileTitle.textContent = popupName.value;
+    profileJob.textContent = popupJob.value;
+    popupUser.classList.remove('popup_opened');
 }
+
+// Обработчик событий  popupTitle
+
+const formSubmitHandlerAddList = (event) => {
+    event.preventDefault();
+    renderCard({ link: popupImg.value, name: popupTitle.value });
+    popupImg.value = '';
+    popupTitle.value = '';
+
+    popupFotoSev.classList.remove('popup_opened');
+}
+
+// Удаление карты 
+
+const handleDeleteCard = (event) => {
+    event.target.closest('.photo').remove();
+}
+
+// Генерация карты 
+
+const generateCard = (nameCart) => {
+    const newCard = cardTemplate.cloneNode(true);
+
+    const titel = newCard.querySelector('.photo__title');
+    titel.textContent = nameCart.name;
+
+    const img = newCard.querySelector('.photo__image');
+    img.src = nameCart.link;
+
+    const cardRemoval = newCard.querySelector('.photo__removel');
+    cardRemoval.addEventListener('click', handleDeleteCard)
+
+    const like = newCard.querySelector('.photo__like').addEventListener('click', function (event) {
+        event.target.classList.toggle('photo__like_active');
+    });
+
+    return newCard;
+}
+
+// Добавление карточки 
+
+const renderCard = (nameCart) => {
+    potoContainet.prepend(generateCard(nameCart));
+};
+
+// Рендер всех карточек 
+
+formAdd.addEventListener('submit', formSubmitHandlerAddList);
+
+// Рендер карточек 
+
+initialCards.forEach((nameCart) => {
+    renderCard(nameCart);
+})
+
+
+
+
+
+// Обрабатываем массив 
+
+
+
+
+
+
+// addEventListener
+
+buttomUser.addEventListener('click', openPopupUser);
+
+popupUserClose.addEventListener('click', clocePopup);
+
+popupUser.addEventListener('click', deletPopupUser);
+
 contantElement.addEventListener('submit', formSubmitHandler);
 
-buttom.addEventListener('click', () => {
-    popupElem.classList.remove('popup_opened');
-});
+buttonPlus.addEventListener('click', popupFotoSeve);
+
+popupFotoClose.addEventListener('click', closePopupFoto);
+
+popupFotoSev.addEventListener('click', deletPopupSeveFoto);

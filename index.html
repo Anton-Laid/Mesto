@@ -26,58 +26,20 @@
                 <button type="button" class="profile__button"><img src="images/Vector__plus.png" alt="Плюс">
                 </button>
             </section>
+            <!--  Фото контейнер -->
             <section class="photos">
-                <div class="photo">
-                    <img src="images/kirill-pershin.jpg" alt="Карачаевск" class="photo__image">
-                    <div class="photo__box">
-                        <h2 class="photo__title">Карачаевск</h2>
-                        <button class="photo__heart" type="button"></button>
-                    </div>
-                </div>
-                <div class="photo">
-                    <img src="images/kirill-pershin-zak.jpg" alt="Гора Эльбруc" class="photo__image">
-                    <div class="photo__box">
-                        <h2 class="photo__title">Гора Эльбрус, самая красивая гора в мире</h2>
-                        <button class="photo__heart" type="button"></button>
-                    </div>
-                </div>
-                <div class="photo">
-                    <img src="images/kirill-pershin-gor.jpg" alt="Домбай" class="photo__image">
-                    <div class="photo__box">
-                        <h2 class="photo__title">Домбай</h2>
-                        <button class="photo__heart" type="button"></button>
-                    </div>
-                </div>
-                <div class="photo">
-                    <img src="images/photo-city.jpg" alt="Бруклин" class="photo__image">
-                    <div class="photo__box">
-                        <h2 class="photo__title">Бруклин</h2>
-                        <button class="photo__heart" type="button"></button>
-                    </div>
-                </div>
-                <div class="photo">
-                    <img src="images/photo-opt.jpg" alt="Осень" class="photo__image">
-                    <div class="photo__box">
-                        <h2 class="photo__title">Осень</h2>
-                        <button class="photo__heart" type="button"></button>
-                    </div>
-                </div>
-                <div class="photo">
-                    <img src="images/photo-art.jpg" alt="Ковчег" class="photo__image">
-                    <div class="photo__box">
-                        <h2 class="photo__title">Ковчег</h2>
-                        <button class="photo__heart" type="button"></button>
-                    </div>
-
-                </div>
             </section>
-        </main>
-        <footer class="footer">
-            <p class="footer__copyright">&copy; 2022 Mesto Russia &nbsp; &nbsp; &nbsp; Anton Laid</p>
-        </footer>
+    </div>
+    </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2022 Mesto Russia &nbsp; &nbsp; &nbsp; Anton Laid</p>
+    </footer>
     </div>
 
-    <section class="popup">
+
+    <!-- Профель -->
+    <section class="popup popup-user">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
 
@@ -92,7 +54,46 @@
         </div>
     </section>
 
-    <script src="scripts/index.js" defer></script>
+
+    <section class="popup popup__card-add">
+        <div class="popup__container">
+            <h2 class="popup__title">Новое место</h2>
+
+            <form class="form form-add" name="card-add">
+
+                <input class="popup__input popup__type-title" type="text" placeholder="Название">
+                <input class="popup__input popup__type-img" type="text" placeholder="Ссылка на картинку">
+                <button class="popup__button" type="submit">Создать</button>
+
+            </form>
+            <button class="popup__buttom-close" type="button"></button>
+        </div>
+    </section>
+
+    <!-- Открытие карточки  -->
+    <div class="popup popup-foto">
+        <div class="popup-foto__box">
+            <img class="popup-foto__images"
+                src="https://images.unsplash.com/photo-1667913171373-76d98335cbf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
+            <p class="popup-foto__title">Название места</p>
+            <button class="popup__buttom-close" type="button"></button>
+        </div>
+    </div>
+
+
+    <template id="template">
+        <div class="photo">
+            <img class="photo__image">
+            <div class="photo__box">
+                <h2 class="photo__title"></h2>
+                <button class="photo__like" type="button"></button>
+            </div>
+            <button class="photo__removel"></button>
+        </div>
+    </template>
+
+    <script src="scripts/constants.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 
 </html>
