@@ -30,7 +30,13 @@ function deletPopupSeveFoto(evt) {
     }
 }
 
+// Popup Img Open 
 
+function openPopupImages() {
+    popupUserIncrease.classList.add('popup_opened');
+    addFotoCard.src = img.src;
+    popupFotoTitle.textContent = title.textContent;
+};
 
 // Передача popup = user
 
@@ -52,6 +58,20 @@ const formSubmitHandlerAddList = (event) => {
     popupFotoSev.classList.remove('popup_opened');
 }
 
+// Рабочий лайк 
+
+
+
+function closeopenPopupUserIncrease() {
+    popupUserIncrease.classList.remove('popup_opened');
+}
+
+function deletopenPopupUserIncrease(evt) {
+    if (evt.target === evt.currentTarget) {
+        popupUserIncrease.classList.remove('popup_opened');
+    }
+}
+
 // Удаление карты 
 
 const handleDeleteCard = (event) => {
@@ -63,18 +83,29 @@ const handleDeleteCard = (event) => {
 const generateCard = (nameCart) => {
     const newCard = cardTemplate.cloneNode(true);
 
-    const titel = newCard.querySelector('.photo__title');
-    titel.textContent = nameCart.name;
+    const IncreaseImages = newCard.querySelector('.photo__image');
 
     const img = newCard.querySelector('.photo__image');
-    img.src = nameCart.link;
 
-    const cardRemoval = newCard.querySelector('.photo__removel');
-    cardRemoval.addEventListener('click', handleDeleteCard)
+    const titel = newCard.querySelector('.photo__title');
+
+    const cardRemoval = newCard.querySelector('.photo__removel').addEventListener('click', handleDeleteCard)
 
     const like = newCard.querySelector('.photo__like').addEventListener('click', function (event) {
         event.target.classList.toggle('photo__like_active');
     });
+
+    img.src = nameCart.link;
+    titel.textContent = nameCart.name;
+
+    IncreaseImages.addEventListener('click', () => {
+        popupUserIncrease.classList.add('popup_opened');
+        addFotoCard.src = nameCart.link;
+        popupFotoTitle.textContent = nameCart.name;
+    });
+
+    newCard.scr = nameCart.link;
+
 
     return newCard;
 }
@@ -95,11 +126,8 @@ initialCards.forEach((nameCart) => {
     renderCard(nameCart);
 })
 
+// Увеличение фото 
 
-
-
-
-// Обрабатываем массив 
 
 
 
@@ -121,3 +149,11 @@ buttonPlus.addEventListener('click', popupFotoSeve);
 popupFotoClose.addEventListener('click', closePopupFoto);
 
 popupFotoSev.addEventListener('click', deletPopupSeveFoto);
+
+// Фото
+
+closeIncreaseImages.addEventListener('click', closeopenPopupUserIncrease);
+
+popupUserIncrease.addEventListener('click', deletopenPopupUserIncrease);
+
+

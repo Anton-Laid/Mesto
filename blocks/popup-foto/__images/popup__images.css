@@ -1,11 +1,19 @@
 .popup-foto__images {
-    width: 240px;
+    max-width: 240px;
     height: 300px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 570px) {
     .popup-foto__images {
-        width: 433px;
+        max-width: 450px;
+        height: 400px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .popup-foto__images {
+        max-width: 816px;
         height: 540px;
     }
 }

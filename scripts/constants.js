@@ -33,15 +33,22 @@ const formAdd = document.querySelector('.form-add');
 const popupTitle = document.querySelector('.popup__type-title');
 const popupImg = document.querySelector('.popup__type-img');
 
-const cardTemplate = document.querySelector('#template').content.querySelector('.photo');
+const cardTemplate = document.querySelector('#template').content;
+
+cardTemplate.querySelector('.photo');
+
+const IncreaseImages = document.querySelector('.photo__image');
+
+const popupUserIncrease = document.querySelector('.popup-foto');
+
+const closeIncreaseImages = popupUserIncrease.querySelector('.popup__buttom-close');
 
 
+// Передача картинке горы 
 
+const addFotoCard = document.querySelector('.popup-foto__images');
 
-
-
-
-
+const popupFotoTitle = document.querySelector('.popup-foto__title');
 
 
 
@@ -91,3 +98,29 @@ const initialCards = [
         link: 'https://images.unsplash.com/photo-1580427331730-b38f8dc1f355?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
     },
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const disclosureFoto = (nameCart) => {
+//     const newFoto = cardTemplate.cloneNode(true);
+
+//     const photoTitle = newFoto.querySelector('.photo__title');
+//     photoTitle.textContent = nameCart.name;
+
+//     const photo = newFoto.querySelector('.photo__image');
+//     photo.scr = nameCart.link;
+
+//     return newFoto;
+// }
+
