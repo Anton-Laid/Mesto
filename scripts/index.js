@@ -1,30 +1,24 @@
 //  Отрытие popup 
 
-function openPopupUser() {
-    popupUser.classList.add('popup_opened');
+function openModalWindow(modalWindow) {
+    modalWindow.classList.add('popup_opened');
 }
 
-function popupFotoSeve() {
-    popupFotoSev.classList.add('popup_opened');
+// Закрытие popup close
+
+function closeModalWindow(window) {
+    window.classList.remove('popup_opened');
 }
 
-// Закрытие popup
+// Закрытие popup delete
 
-function clocePopup() {
-    popupUser.classList.remove('popup_opened');
-}
-
-function closePopupFoto() {
-    popupFotoSev.classList.remove('popup_opened');
-}
-
-function deletPopupUser(evt) {
+function closurePopupUser(evt) {
     if (evt.target === evt.currentTarget) {
         popupUser.classList.remove('popup_opened');
     }
 }
 
-function deletPopupSeveFoto(evt) {
+function closurePopupFotoSev(evt) {
     if (evt.target === evt.currentTarget) {
         popupFotoSev.classList.remove('popup_opened');
     }
@@ -32,15 +26,15 @@ function deletPopupSeveFoto(evt) {
 
 // Popup Img Open 
 
-function openPopupImages() {
-    popupUserIncrease.classList.add('popup_opened');
+function addPhotoWindowPopupUser() {
+    openModalWindow(popupUserIncrease);
     addFotoCard.src = img.src;
     popupFotoTitle.textContent = title.textContent;
 };
 
 // Передача popup = user
 
-function formSubmitHandler(evt) {
+function dataTransfersPopupUser(evt) {
     evt.preventDefault();
     profileTitle.textContent = popupName.value;
     profileJob.textContent = popupJob.value;
@@ -54,21 +48,18 @@ const formSubmitHandlerAddList = (event) => {
     renderCard({ link: popupImg.value, name: popupTitle.value });
     popupImg.value = '';
     popupTitle.value = '';
-
-    popupFotoSev.classList.remove('popup_opened');
+    closeModalWindow(popupFotoSev);
 }
 
-// Рабочий лайк 
+// Закрытие увеличенной фотки
 
-
-
-function closeopenPopupUserIncrease() {
-    popupUserIncrease.classList.remove('popup_opened');
+function collapseIncreaseImages() {
+    closeModalWindow(popupUserIncrease);
 }
 
-function deletopenPopupUserIncrease(evt) {
+function closureIncreaseImages(evt) {
     if (evt.target === evt.currentTarget) {
-        popupUserIncrease.classList.remove('popup_opened');
+        closeModalWindow(popupUserIncrease);
     }
 }
 
@@ -82,30 +73,24 @@ const handleDeleteCard = (event) => {
 
 const generateCard = (nameCart) => {
     const newCard = cardTemplate.cloneNode(true);
-
     const IncreaseImages = newCard.querySelector('.photo__image');
-
     const img = newCard.querySelector('.photo__image');
-
     const titel = newCard.querySelector('.photo__title');
-
     const cardRemoval = newCard.querySelector('.photo__removel').addEventListener('click', handleDeleteCard)
+    const like = newCard.querySelector('.photo__like');
 
-    const like = newCard.querySelector('.photo__like').addEventListener('click', function (event) {
-        event.target.classList.toggle('photo__like_active');
-    });
+    like.addEventListener('click', (event) => event.target.classList.toggle('photo__like_active'));
 
     img.src = nameCart.link;
     titel.textContent = nameCart.name;
 
     IncreaseImages.addEventListener('click', () => {
-        popupUserIncrease.classList.add('popup_opened');
+        openModalWindow(popupUserIncrease);
         addFotoCard.src = nameCart.link;
         popupFotoTitle.textContent = nameCart.name;
     });
 
     newCard.scr = nameCart.link;
-
 
     return newCard;
 }
@@ -126,34 +111,34 @@ initialCards.forEach((nameCart) => {
     renderCard(nameCart);
 })
 
-// Увеличение фото 
-
-
-
-
-
-
 
 // addEventListener
 
-buttomUser.addEventListener('click', openPopupUser);
+buttonUser.addEventListener('click', () => {
+    openModalWindow(popupUser);
+});
 
-popupUserClose.addEventListener('click', clocePopup);
+popupUserClose.addEventListener('click', () => {
+    closeModalWindow(popupUser);
+});
 
-popupUser.addEventListener('click', deletPopupUser);
+popupUser.addEventListener('click', closurePopupUser);
 
-contantElement.addEventListener('submit', formSubmitHandler);
+contantElement.addEventListener('submit', dataTransfersPopupUser);
 
-buttonPlus.addEventListener('click', popupFotoSeve);
+buttonPlus.addEventListener('click', () => {
+    openModalWindow(popupFotoSev);
+});
 
-popupFotoClose.addEventListener('click', closePopupFoto);
+popupFotoClose.addEventListener('click', () => {
+    closeModalWindow(popupFotoSev);
+});
 
-popupFotoSev.addEventListener('click', deletPopupSeveFoto);
+popupFotoSev.addEventListener('click', closurePopupFotoSev);
 
 // Фото
 
-closeIncreaseImages.addEventListener('click', closeopenPopupUserIncrease);
+closeIncreaseImages.addEventListener('click', collapseIncreaseImages);
 
-popupUserIncrease.addEventListener('click', deletopenPopupUserIncrease);
-
+popupUserIncrease.addEventListener('click', closureIncreaseImages);
 
