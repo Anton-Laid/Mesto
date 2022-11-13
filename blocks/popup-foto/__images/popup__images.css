@@ -1,6 +1,7 @@
 .popup-foto__images {
     max-width: 240px;
     height: 300px;
+    transition: .3s ease-in-out;
 }
 
 @media (min-width: 570px) {

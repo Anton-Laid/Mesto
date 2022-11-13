@@ -20,7 +20,7 @@ const contantElement = document.querySelector('.form');
 
 // Popup для Photo окна
 
-const popupFotoSev = document.querySelector('.popup__card-add');
+const popupFotoSev = document.querySelector('.popup-add');
 const buttonPlus = document.querySelector('.profile__button');
 const popupFotoClose = popupFotoSev.querySelector('.popup__buttom-close');
 
