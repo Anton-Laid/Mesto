@@ -14,13 +14,13 @@ function closeModalWindow(window) {
 
 function closurePopupUser(evt) {
     if (evt.target === evt.currentTarget) {
-        popupUser.classList.remove('popup_opened');
+        closeModalWindow(popupUser);
     }
 }
 
 function closurePopupFotoSev(evt) {
     if (evt.target === evt.currentTarget) {
-        popupFotoSev.classList.remove('popup_opened');
+        closeModalWindow(popupFotoSev);
     }
 }
 
@@ -38,7 +38,7 @@ function dataTransfersPopupUser(evt) {
     evt.preventDefault();
     profileTitle.textContent = popupName.value;
     profileJob.textContent = popupJob.value;
-    popupUser.classList.remove('popup_opened');
+    closeModalWindow(popupUser);
 }
 
 // Обработчик событий  popupTitle
