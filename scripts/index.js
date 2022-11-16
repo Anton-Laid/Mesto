@@ -14,13 +14,19 @@ function closeModalWindow(window) {
 
 function closurePopupUser(evt) {
     if (evt.target === evt.currentTarget) {
-        popupUser.classList.remove('popup_opened');
+        closeModalWindow(popupUser);
     }
 }
 
 function closurePopupFotoSev(evt) {
     if (evt.target === evt.currentTarget) {
-        popupFotoSev.classList.remove('popup_opened');
+        closeModalWindow(popupFotoSev);
+    }
+}
+
+function closurePopupUpdateAvatar(evt) {
+    if (evt.target === evt.currentTarget) {
+        closeModalWindow(popupUpdateAvatar);
     }
 }
 
@@ -38,17 +44,26 @@ function dataTransfersPopupUser(evt) {
     evt.preventDefault();
     profileTitle.textContent = popupName.value;
     profileJob.textContent = popupJob.value;
-    popupUser.classList.remove('popup_opened');
+    closeModalWindow(popupUser);
 }
 
 // Обработчик событий  popupTitle
 
-const formSubmitHandlerAddList = (event) => {
-    event.preventDefault();
+const formSubmitHandlerAddList = (evt) => {
+    evt.preventDefault();
     renderCard({ link: popupImg.value, name: popupTitle.value });
     popupImg.value = '';
     popupTitle.value = '';
     closeModalWindow(popupFotoSev);
+}
+
+// Обработчик изменения аватарки -------------------------------------->
+
+const popupAboutUser = (evt) => {
+    evt.preventDefault();
+    changingProfile.src = popupAboutChange.value;
+    popupAboutChange.value = '';
+    closeModalWindow(popupUpdateAvatar);
 }
 
 // Закрытие увеличенной фотки
@@ -90,7 +105,7 @@ const generateCard = (nameCart) => {
         popupFotoTitle.textContent = nameCart.name;
     });
 
-    newCard.scr = nameCart.link;
+    // newCard.scr = nameCart.link;
 
     return newCard;
 }
@@ -142,3 +157,16 @@ closeIncreaseImages.addEventListener('click', collapseIncreaseImages);
 
 popupUserIncrease.addEventListener('click', closureIncreaseImages);
 
+// Изменение фото 
+
+changingProfile.addEventListener('click', () => {
+    openModalWindow(popupUpdateAvatar);
+});
+
+closePopupUpdateAvatar.addEventListener('click', () => {
+    closeModalWindow(popupUpdateAvatar);
+})
+
+popupUpdateAvatar.addEventListener('click', closurePopupUpdateAvatar);
+
+formAddAvatar.addEventListener('submit', popupAboutUser);
