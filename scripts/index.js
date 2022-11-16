@@ -44,7 +44,7 @@ function dataTransfersPopupUser(evt) {
     evt.preventDefault();
     profileTitle.textContent = popupName.value;
     profileJob.textContent = popupJob.value;
-    openModalWindow(popupUser);
+    closeModalWindow(popupUser);
 }
 
 // Обработчик событий  popupTitle
