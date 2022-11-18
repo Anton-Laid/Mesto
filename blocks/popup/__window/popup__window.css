@@ -1,9 +1,10 @@
 .popup__window {
     max-width: 280px;
-    height: 340px;
+    height: 345px;
     background-color: #fff;
     border-radius: 10px;
     margin: auto;
+    justify-items: center;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -15,5 +16,4 @@
         height: 250px;
         margin: auto;
     }
-
 }

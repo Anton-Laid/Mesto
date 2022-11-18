@@ -20,7 +20,7 @@
     opacity: .8;
 }
 
-@media (min-width:1280px) {
+@media (min-width:1024px) {
     .popup__button {
         width: 358px;
         min-height: 50px;
