@@ -103,7 +103,38 @@
 
     </div>
 
+<<<<<<< Updated upstream
     <script src="index.js" defer></script>
+=======
+    <!-- Открытие popup изменение аватраки  -->
+    <section class="popup popup-update-avatar">
+        <div class="popup__window">
+            <h2 class="popup__title">Обновить аватар</h2>
+
+            <form class="form form-user" name="card-avatar" id="userAvatar-input">
+                <input class="popup__input popup__type_about_change" type="text" placeholder="Ссылка на картинку">
+                <button class="popup__button" type="submit">Сохранить</button>
+            </form>
+            <button class="popup__buttom-close" type="button"></button>
+        </div>
+    </section>
+    <template id="template">
+        <div class="photo">
+            <img class="photo__image">
+            <div class="photo__box">
+                <h2 class="photo__title"></h2>
+                <div class="photo__container">
+                    <button class="photo__like" type="button"></button>
+                    <span class="photo__like-count">0</span>
+                </div>
+            </div>
+            <button class="photo__removel"></button>
+        </div>
+    </template>
+
+    <script src="scripts/constants.js"></script>
+    <script src="scripts/index.js"></script>
+>>>>>>> Stashed changes
 </body>
 
 </html>
