@@ -1,7 +1,7 @@
 .popup__button {
     width: 238px;
     min-height: 46px;
-    margin: 0 22px 25px;
+    margin: 59px 22px 25px;
     background-color: black;
     color: #fff;
     font-family: 'Inter', Arial, sans-serif;
@@ -20,11 +20,11 @@
     opacity: .8;
 }
 
-@media (min-width:1024px) {
+@media (min-width:1280px) {
     .popup__button {
         width: 358px;
         min-height: 50px;
-        margin: 0 36px 37px;
+        margin: 62px 36px 37px;
         font-size: 18px;
         line-height: 22px;
     }

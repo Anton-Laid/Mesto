@@ -29,6 +29,7 @@ const popupFotoClose = popupFotoSev.querySelector('.popup__buttom-close');
 
 // Фото на сате 
 
+
 const potoContainet = document.querySelector('.photos');
 const formAdd = document.querySelector('.form-add');
 const popupTitle = document.querySelector('.popup__type-title');
@@ -49,20 +50,6 @@ const closeIncreaseImages = popupUserIncrease.querySelector('.popup__buttom-clos
 const addFotoCard = document.querySelector('.popup-foto__images');
 
 const popupFotoTitle = document.querySelector('.popup-foto__title');
-
-// Изменение аватара 
-
-const changingProfile = document.querySelector('.profile__image');
-
-const popupUpdateAvatar = document.querySelector('.popup-update-avatar');
-
-const closePopupUpdateAvatar = popupUpdateAvatar.querySelector('.popup__buttom-close');
-
-const popupAboutChange = document.querySelector('.popup__type_about_change');
-
-const formAddAvatar = document.querySelector('.form-user');
-
-const userAvatarInput = document.querySelector('#userAvatar-input');
 
 // Массив для стандартных карточек 
 
@@ -92,14 +79,4 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     },
 ];
-
-
-
-
-
-
-
-
-
-
 
