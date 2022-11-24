@@ -19,7 +19,7 @@ const popupJob = document.querySelector('.popup__type-job');
 const profileTitle = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
 
-const contantElement = document.querySelector('.form');
+const contantElement = document.querySelector('.form__user');
 
 // Popup для Photo окна
 
@@ -50,6 +50,12 @@ const closeIncreaseImages = popupUserIncrease.querySelector('.popup__buttom-clos
 const addFotoCard = document.querySelector('.popup-foto__images');
 
 const popupFotoTitle = document.querySelector('.popup-foto__title');
+
+// // Работа с inputs 
+
+// const formInputError = document.querySelector('.form__input-error');
+
+// const popupInput = document.querySelector('.popup__input');
 
 // Массив для стандартных карточек 
 
