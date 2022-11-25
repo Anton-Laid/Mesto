@@ -53,9 +53,19 @@ const popupFotoTitle = document.querySelector('.popup-foto__title');
 
 // // Работа с inputs 
 
-// const formInputError = document.querySelector('.form__input-error');
+const addButton = document.querySelector('.popup__button');
 
-// const popupInput = document.querySelector('.popup__input');
+// Обект с popup
+
+// enableValidation({
+//     formSelector: '.popup',
+//     inputSelector: '.popup__input',
+//     submitButtonSelector: '.popup__button',
+//     inactiveButtonClass: 'popup__button-active',
+//     inputErrorClass: 'popup__input_type_error',
+//     errorClass: 'form__input-error-active',
+// });
+
 
 // Массив для стандартных карточек 
 

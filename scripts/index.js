@@ -146,19 +146,7 @@ popupUserIncrease.addEventListener('click', closureIncreaseImages);
 
 
 
-// Работа с inputs popupUser
-
-
-const formInput = contantElement.querySelector('.popup__input');
-console.log(formInput.id);
-
-const formError = contantElement.querySelector(`.${form - name.id}-error`);
-
-const formInputAdd = popupFotoSev.querySelector('.popup__input');
-
-console.log(formInputAdd.id);
-
-//const formErrorImg = contantElement.querySelector(`.${form - title.id}-error`);
+// Работа с input ошибки 
 
 function showInputError(formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -182,27 +170,54 @@ const checkInputValidity = (formElement, inputElement) => {
     }
 };
 
-const setEventListeners = (formElement) => {
+function setEventListeners(formElement) {
     const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+
+    const buttonElement = formElement.querySelector('.popup__button');
+
+    toggleButtonState(inputList, buttonElement);
+
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
             checkInputValidity(formElement, inputElement);
+
+            toggleButtonState(inputList, buttonElement);
         });
     });
 };
 
 function enableValidation() {
-    const formList = Array.from(document.querySelectorAll('.form__user'));
+    const formList = Array.from(document.querySelectorAll('.popup')); /// form__user было
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
-        setEventListeners(formElement);
+        const fieldsetList = Array.from(formElement.querySelectorAll('.form'));
+        fieldsetList.forEach((fieldSet) => {
+            setEventListeners(fieldSet);
+        });
     });
 }
 
 enableValidation();
 
+// Оключение кнопки. 
+
+function hasInvalidInput(inputList) {
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+    })
+};
+
+function toggleButtonState(inputList, buttonElement) {
+    if (hasInvalidInput(inputList)) {
+        buttonElement.classList.add('popup__button-active');
+    } else {
+        buttonElement.classList.remove('popup__button-active');
+    }
+};
+
+// Закрытие popup Escape-пом
 
 document.addEventListener('keydown', keyDownEsc);
 
@@ -210,6 +225,7 @@ function keyDownEsc(evt) {
     if (evt.key === 'Escape') {
         closeModalWindow(popupUser);
         closeModalWindow(popupFotoSev);
+        closeModalWindow(popupUserIncrease);
     }
 }
 

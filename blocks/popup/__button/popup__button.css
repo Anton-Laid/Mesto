@@ -20,11 +20,6 @@
     opacity: .8;
 }
 
-.popup__button-active {
-    border: 1px solid black;
-    color: black;
-}
-
 @media (min-width: 1024px) {
     .popup__button {
         width: 358px;
