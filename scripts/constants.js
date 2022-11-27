@@ -2,6 +2,8 @@
 
 const popup = document.querySelector('.popup');
 
+// const popupInput = document.querySelectorAll('.popup__input');
+
 const buttonUser = document.querySelector('.profile__rectangle');
 
 //  открытие попапов
@@ -19,7 +21,7 @@ const popupJob = document.querySelector('.popup__type-job');
 const profileTitle = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
 
-const contantElement = document.querySelector('.form');
+const contantElement = document.querySelector('.form__user');
 
 // Popup для Photo окна
 
@@ -51,6 +53,22 @@ const addFotoCard = document.querySelector('.popup-foto__images');
 
 const popupFotoTitle = document.querySelector('.popup-foto__title');
 
+// // Работа с inputs 
+
+const addButton = document.querySelector('.popup__button');
+
+// Обект с popup
+
+// enableValidation({
+//     formSelector: '.popup',
+//     inputSelector: '.popup__input',
+//     submitButtonSelector: '.popup__button',
+//     inactiveButtonClass: 'popup__button-active',
+//     inputErrorClass: 'popup__input_type_error',
+//     errorClass: 'form__input-error-active',
+// });
+
+
 // Массив для стандартных карточек 
 
 const initialCards = [
@@ -79,29 +97,4 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     },
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const disclosureFoto = (nameCart) => {
-//     const newFoto = cardTemplate.cloneNode(true);
-
-//     const photoTitle = newFoto.querySelector('.photo__title');
-//     photoTitle.textContent = nameCart.name;
-
-//     const photo = newFoto.querySelector('.photo__image');
-//     photo.scr = nameCart.link;
-
-//     return newFoto;
-// }
 

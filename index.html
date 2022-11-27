@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto Russia</title>
     <link rel="stylesheet" href="./pages/index.css">
+    <script src="scripts/constants.js" defer></script>
+    <script src="scripts/index.js" defer></script>
+    <script src="scripts/validate.js" defer></script>
 </head>
 
 <body class="body">
@@ -38,31 +41,52 @@
     <!-- Профель -->
     <section class="popup popup-user">
         <div class="popup__container">
-            <h2 class="popup__title">Редактировать профиль</h2>
+            <div class="popup__block">
 
-            <form class="form" name="form">
+                <form class="form form__user" name="form" id="formUser" novalidate>
+                    <h2 class="popup__title">Редактировать профиль</h2>
 
-                <input class="popup__input popup__type-name" type="text" value="Жак-Ив Кусто" name="fullName">
-                <input class="popup__input popup__type-job" type="text" value="Исследователь океана" name="profession">
-                <button class="popup__button" type="submit">Сохранить</button>
 
-            </form>
-            <button class="popup__buttom-close" type="button"></button>
+                    <input id="form-name" class="popup__input popup__type-name" type="text" value="Жак-Ив Кусто"
+                        name="name" placeholder="Имя" required minlength="2" maxlength="40">
+
+                    <span class="form-name-error form__input-error"></span>
+
+
+                    <input id="form-job" class="popup__input popup__type-job" type="text" value="Исследователь океана"
+                        name="profession" placeholder="О себе" required minlength="2" maxlength="200">
+
+                    <span class="form-job-error form__input-error"></span>
+
+                    <button class="popup__button" type="submit">Сохранить</button>
+                </form>
+
+                <button class="popup__buttom-close" type="button"></button>
+            </div>
         </div>
     </section>
-
-
     <section class="popup popup-add">
         <div class="popup__container">
-            <h2 class="popup__title">Новое место</h2>
+            <div class="popup__block">
 
-            <form class="form form-add" name="card-add">
+                <form class="form form-add" name="form-add" id="formImg">
+                    <h2 class="popup__title">Новое место</h2>
 
-                <input class="popup__input popup__type-title" type="text" placeholder="Название">
-                <input class="popup__input popup__type-img" type="text" placeholder="Ссылка на картинку">
-                <button class="popup__button" type="submit">Создать</button>
+                    <input id="form-title" name="popuoTitle" required class="popup__input popup__type-title" type="text"
+                        placeholder="Название" minlength="2" maxlength="200">
 
-            </form>
+
+                    <span class="form-title-error form__input-error"></span>
+
+                    <input id="form-img" class="popup__input popup__type-img" required type="url"
+                        placeholder="Ссылка на картинку">
+
+                    <span class="form-img-error form__input-error"></span>
+
+                    <button class="popup__button" type="submit">Создать</button>
+
+                </form>
+            </div>
             <button class="popup__buttom-close" type="button"></button>
         </div>
     </section>
@@ -88,9 +112,7 @@
             <button class="photo__removel"></button>
         </div>
     </template>
-
-    <script src="scripts/constants.js"></script>
-    <script src="scripts/index.js"></script>
 </body>
 
 </html>
+

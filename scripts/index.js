@@ -8,13 +8,14 @@ function openModalWindow(modalWindow) {
 
 function closeModalWindow(window) {
     window.classList.remove('popup_opened');
+    removingErrorInputPopup(popup)
 }
 
 // Закрытие popup delete
 
 function closurePopupUser(evt) {
     if (evt.target === evt.currentTarget) {
-        closeModalWindow(popupUser);
+        closeModalWindow(popupUser); // почему все исправил, а это пропутил... Я ответить не могу) 
     }
 }
 
@@ -59,6 +60,16 @@ function collapseIncreaseImages() {
 
 function closureIncreaseImages(evt) {
     if (evt.target === evt.currentTarget) {
+        closeModalWindow(popupUserIncrease);
+    }
+}
+
+// Закрытие по кнопке Escepe
+
+function keyDownEsc(evt) {
+    if (evt.key === 'Escape') {
+        closeModalWindow(popupUser);
+        closeModalWindow(popupFotoSev);
         closeModalWindow(popupUserIncrease);
     }
 }
@@ -141,4 +152,10 @@ popupFotoSev.addEventListener('click', closurePopupFotoSev);
 closeIncreaseImages.addEventListener('click', collapseIncreaseImages);
 
 popupUserIncrease.addEventListener('click', closureIncreaseImages);
+
+// Закрытие popup Escape-пом
+
+document.addEventListener('keydown', keyDownEsc);
+
+
 
