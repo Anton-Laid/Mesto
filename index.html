@@ -40,61 +40,49 @@
 
     <!-- Профель -->
     <section class="popup popup-user">
-        <div class="popup__container">
-            <div class="popup__block">
 
-                <form class="form form__user" name="form" id="formUser" novalidate>
-                    <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="form form__user" name="form" id="formUser" novalidate>
+            <h2 class="popup__title">Редактировать профиль</h2>
 
-
-                    <input id="form-name" class="popup__input popup__type-name" type="text" value="Жак-Ив Кусто"
-                        name="name" placeholder="Имя" required minlength="2" maxlength="40">
-
-                    <span class="form-name-error form__input-error"></span>
+            <input id="form-name" class="popup__input popup__type-name" type="text" value="Жак-Ив Кусто" name="name"
+                placeholder="Имя" required minlength="2" maxlength="40">
+            <span class="form-name-error form__input-error"></span>
 
 
-                    <input id="form-job" class="popup__input popup__type-job" type="text" value="Исследователь океана"
-                        name="profession" placeholder="О себе" required minlength="2" maxlength="200">
+            <input id="form-job" class="popup__input popup__type-job" type="text" value="Исследователь океана"
+                name="profession" placeholder="О себе" required minlength="2" maxlength="200">
+            <span class="form-job-error form__input-error"></span>
 
-                    <span class="form-job-error form__input-error"></span>
-
-                    <button class="popup__button" type="submit">Сохранить</button>
-                </form>
-
-                <button class="popup__buttom-close" type="button"></button>
-            </div>
-        </div>
-    </section>
-    <section class="popup popup-add">
-        <div class="popup__container">
-            <div class="popup__block">
-
-                <form class="form form-add" name="form-add" id="formImg">
-                    <h2 class="popup__title">Новое место</h2>
-
-                    <input id="form-title" name="popuoTitle" required class="popup__input popup__type-title" type="text"
-                        placeholder="Название" minlength="2" maxlength="200">
-
-
-                    <span class="form-title-error form__input-error"></span>
-
-                    <input id="form-img" class="popup__input popup__type-img" required type="url"
-                        placeholder="Ссылка на картинку">
-
-                    <span class="form-img-error form__input-error"></span>
-
-                    <button class="popup__button" type="submit">Создать</button>
-
-                </form>
-            </div>
+            <button class="popup__button" type="submit">Сохранить</button>
             <button class="popup__buttom-close" type="button"></button>
-        </div>
+        </form>
+
+    </section>
+
+    <section class="popup popup-add">
+
+        <form class="form form-add" name="form-add" id="formImg">
+            <h2 class="popup__title">Новое место</h2>
+
+            <input id="form-title" name="popuoTitle" required class="popup__input popup__type-title" type="text"
+                placeholder="Название" minlength="2" maxlength="200">
+            <span class="form-title-error form__input-error"></span>
+
+
+            <input id="form-img" class="popup__input popup__type-img" required type="url"
+                placeholder="Ссылка на картинку">
+            <span class="form-img-error form__input-error"></span>
+
+            <button class="popup__button" type="submit">Создать</button>
+            <button class="popup__buttom-close" type="button"></button>
+        </form>
+
     </section>
 
     <!-- Открытие карточки  -->
     <div class="popup popup-foto">
         <div class="popup-foto__box">
-            <img class="popup-foto__images"
+            <img class="popup-foto__images" alt="фото"
                 src="https://images.unsplash.com/photo-1667913171373-76d98335cbf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
             <p class="popup-foto__title">Название места</p>
             <button class="popup__buttom-close" type="button"></button>
@@ -115,4 +103,3 @@
 </body>
 
 </html>
-

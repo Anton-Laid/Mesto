@@ -4,8 +4,8 @@
     height: 20px;
     background-size: cover;
     position: absolute;
-    top: -35px;
-    right: 0;
+    top: -30px;
+    right: 0px;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -17,7 +17,7 @@
     cursor: pointer;
 }
 
-@media (min-width:1280px) {
+@media (min-width:1024px) {
     .popup__buttom-close {
         width: 32px;
         height: 32px;

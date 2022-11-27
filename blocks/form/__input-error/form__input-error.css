@@ -3,12 +3,12 @@
     display: block;
     width: 242px;
     height: 30px;
-    margin-top: 5px;
+    margin: 5px 22px 0;
 }
 
 @media (min-width: 1024px) {
     .form__input-error {
         width: 358px;
+        margin-left: 36px;
     }
 }
-

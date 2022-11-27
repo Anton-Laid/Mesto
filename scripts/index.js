@@ -8,14 +8,17 @@ function openModalWindow(modalWindow) {
 
 function closeModalWindow(window) {
     window.classList.remove('popup_opened');
-    removingErrorInputPopup(popup)
+    removingErrorInputPopup(popupUser);
+    contantElement.reset();
+    removingErrorInputPopup(popupFotoSev);
+    formAdd.reset();
 }
 
 // Закрытие popup delete
 
 function closurePopupUser(evt) {
     if (evt.target === evt.currentTarget) {
-        closeModalWindow(popupUser); // почему все исправил, а это пропутил... Я ответить не могу) 
+        closeModalWindow(popupUser);
     }
 }
 
