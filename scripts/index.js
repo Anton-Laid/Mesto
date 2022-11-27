@@ -158,4 +158,3 @@ popupUserIncrease.addEventListener('click', closureIncreaseImages);
 document.addEventListener('keydown', keyDownEsc);
 
 
-
