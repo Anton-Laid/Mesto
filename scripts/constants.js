@@ -1,8 +1,8 @@
 // Popup для User окна
 
-const popup = document.querySelector('.popup');
+const popup = document.querySelectorAll('.popup');
 
-// const popupInput = document.querySelectorAll('.popup__input');
+const form = document.querySelectorAll('.form');
 
 const buttonUser = document.querySelector('.profile__rectangle');
 
@@ -25,8 +25,8 @@ const contantElement = document.querySelector('.form__user');
 
 // Popup для Photo окна
 
-const popupFotoSev = document.querySelector('.popup-add');
 const buttonPlus = document.querySelector('.profile__button');
+const popupFotoSev = document.querySelector('.popup-add');
 const popupFotoClose = popupFotoSev.querySelector('.popup__buttom-close');
 
 // Фото на сате 
@@ -36,6 +36,8 @@ const potoContainet = document.querySelector('.photos');
 const formAdd = document.querySelector('.form-add');
 const popupTitle = document.querySelector('.popup__type-title');
 const popupImg = document.querySelector('.popup__type-img');
+
+const buttonElement = formAdd?.querySelector('.popup__button');
 
 const cardTemplate = document.querySelector('#template').content;
 
@@ -52,22 +54,6 @@ const closeIncreaseImages = popupUserIncrease.querySelector('.popup__buttom-clos
 const addFotoCard = document.querySelector('.popup-foto__images');
 
 const popupFotoTitle = document.querySelector('.popup-foto__title');
-
-// // Работа с inputs 
-
-const addButton = document.querySelector('.popup__button');
-
-// Обект с popup
-
-// enableValidation({
-//     formSelector: '.popup',
-//     inputSelector: '.popup__input',
-//     submitButtonSelector: '.popup__button',
-//     inactiveButtonClass: 'popup__button-active',
-//     inputErrorClass: 'popup__input_type_error',
-//     errorClass: 'form__input-error-active',
-// });
-
 
 // Массив для стандартных карточек 
 

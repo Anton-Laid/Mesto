@@ -2,17 +2,23 @@
 
 function openModalWindow(modalWindow) {
     modalWindow.classList.add('popup_opened');
+    addListener();
 }
 
 // Закрытие popup close
 
 function closeModalWindow(window) {
     window.classList.remove('popup_opened');
-    removingErrorInputPopup(popupUser);
-    contantElement.reset();
-    removingErrorInputPopup(popupFotoSev);
-    formAdd.reset();
+    removeListene();
 }
+
+function addListener() {
+    document.addEventListener('keydown', closeByEscape);
+};
+
+function removeListene() {
+    document.removeEventListener('keydown', closeByEscape);
+};
 
 // Закрытие popup delete
 
@@ -33,12 +39,13 @@ function closurePopupFotoSev(evt) {
 function addPhotoWindowPopupUser() {
     openModalWindow(popupUserIncrease);
     addFotoCard.src = img.src;
+    addFotoCard.alt = img.src;
     popupFotoTitle.textContent = title.textContent;
 };
 
 // Передача popup = user
 
-function dataTransfersPopupUser(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileTitle.textContent = popupName.value;
     profileJob.textContent = popupJob.value;
@@ -47,7 +54,7 @@ function dataTransfersPopupUser(evt) {
 
 // Обработчик событий  popupTitle
 
-const formSubmitHandlerAddList = (event) => {
+const handleAddFormSubmit = (event) => {
     event.preventDefault();
     renderCard({ link: popupImg.value, name: popupTitle.value });
     popupImg.value = '';
@@ -63,16 +70,6 @@ function collapseIncreaseImages() {
 
 function closureIncreaseImages(evt) {
     if (evt.target === evt.currentTarget) {
-        closeModalWindow(popupUserIncrease);
-    }
-}
-
-// Закрытие по кнопке Escepe
-
-function keyDownEsc(evt) {
-    if (evt.key === 'Escape') {
-        closeModalWindow(popupUser);
-        closeModalWindow(popupFotoSev);
         closeModalWindow(popupUserIncrease);
     }
 }
@@ -96,15 +93,15 @@ const generateCard = (nameCart) => {
     like.addEventListener('click', (event) => event.target.classList.toggle('photo__like_active'));
 
     img.src = nameCart.link;
+    img.alt = nameCart.name;
     titel.textContent = nameCart.name;
 
     IncreaseImages.addEventListener('click', () => {
         openModalWindow(popupUserIncrease);
         addFotoCard.src = nameCart.link;
+        addFotoCard.alt = nameCart.name;
         popupFotoTitle.textContent = nameCart.name;
     });
-
-    newCard.scr = nameCart.link;
 
     return newCard;
 }
@@ -117,7 +114,7 @@ const renderCard = (nameCart) => {
 
 // Рендер всех карточек 
 
-formAdd.addEventListener('submit', formSubmitHandlerAddList);
+formAdd.addEventListener('submit', handleAddFormSubmit);
 
 // Рендер карточек 
 
@@ -125,12 +122,28 @@ initialCards.forEach((nameCart) => {
     renderCard(nameCart);
 })
 
+function openEdit() {
+    openModalWindow(popupUser);
+    removingErrorInputPopup(popupUser);
+    popupName.value = profileTitle.textContent;
+    popupJob.value = profileJob.textContent;
+}
+
+function openAddFoto() {
+    openModalWindow(popupFotoSev);
+    removingErrorInputPopup(popupFotoSev);
+    formAdd.reset();
+    blockButton(buttonElement, 'popup__button-active');
+}
+
+function blockButton(button, buttonSelectorDisabled) {
+    button.classList.add(buttonSelectorDisabled);
+    buttonElement.disabled = true;
+}
 
 // addEventListener
 
-buttonUser.addEventListener('click', () => {
-    openModalWindow(popupUser);
-});
+buttonUser.addEventListener('click', openEdit);
 
 popupUserClose.addEventListener('click', () => {
     closeModalWindow(popupUser);
@@ -138,17 +151,19 @@ popupUserClose.addEventListener('click', () => {
 
 popupUser.addEventListener('click', closurePopupUser);
 
-contantElement.addEventListener('submit', dataTransfersPopupUser);
+contantElement.addEventListener('submit', handleProfileFormSubmit);
 
-buttonPlus.addEventListener('click', () => {
-    openModalWindow(popupFotoSev);
-});
+buttonPlus.addEventListener('click', openAddFoto);
 
 popupFotoClose.addEventListener('click', () => {
     closeModalWindow(popupFotoSev);
 });
 
-popupFotoSev.addEventListener('click', closurePopupFotoSev);
+// popupFotoSev.addEventListener('click', () => {
+//     closeModalWindow(popupFotoSev);
+// });
+
+
 
 // Фото
 
@@ -156,8 +171,15 @@ closeIncreaseImages.addEventListener('click', collapseIncreaseImages);
 
 popupUserIncrease.addEventListener('click', closureIncreaseImages);
 
-// Закрытие popup Escape-пом
+popupFotoSev.addEventListener('click', closurePopupFotoSev);
 
-document.addEventListener('keydown', keyDownEsc);
 
+// Закрытие по кнопке Escepe
+
+function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        closeModalWindow(openedPopup);
+    }
+}
 
