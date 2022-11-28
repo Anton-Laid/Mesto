@@ -122,14 +122,14 @@ initialCards.forEach((nameCart) => {
     renderCard(nameCart);
 })
 
-function openEdit() {
+function openInputEdit() {
     openModalWindow(popupUser);
     removingErrorInputPopup(popupUser);
     popupName.value = profileTitle.textContent;
     popupJob.value = profileJob.textContent;
 }
 
-function openAddFoto() {
+function openInputAddFoto() {
     openModalWindow(popupFotoSev);
     removingErrorInputPopup(popupFotoSev);
     formAdd.reset();
@@ -143,7 +143,7 @@ function blockButton(button, buttonSelectorDisabled) {
 
 // addEventListener
 
-buttonUser.addEventListener('click', openEdit);
+buttonUser.addEventListener('click', openInputEdit);
 
 popupUserClose.addEventListener('click', () => {
     closeModalWindow(popupUser);
@@ -153,17 +153,11 @@ popupUser.addEventListener('click', closurePopupUser);
 
 contantElement.addEventListener('submit', handleProfileFormSubmit);
 
-buttonPlus.addEventListener('click', openAddFoto);
+buttonPlus.addEventListener('click', openInputAddFoto);
 
 popupFotoClose.addEventListener('click', () => {
     closeModalWindow(popupFotoSev);
 });
-
-// popupFotoSev.addEventListener('click', () => {
-//     closeModalWindow(popupFotoSev);
-// });
-
-
 
 // Фото
 

@@ -21,7 +21,7 @@ const popupJob = document.querySelector('.popup__type-job');
 const profileTitle = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
 
-const contantElement = document.querySelector('.form__user');
+const contantElement = document.querySelector('.form-user');
 
 // Popup для Photo окна
 
