@@ -84,7 +84,7 @@ const handleDeleteCard = (event) => {
 
 const generateCard = (nameCart) => {
     const newCard = cardTemplate.cloneNode(true);
-    const IncreaseImages = newCard.querySelector('.photo__image');
+    const increaseImages = newCard.querySelector('.photo__image');
     const img = newCard.querySelector('.photo__image');
     const titel = newCard.querySelector('.photo__title');
     const cardRemoval = newCard.querySelector('.photo__removel').addEventListener('click', handleDeleteCard)
@@ -96,7 +96,7 @@ const generateCard = (nameCart) => {
     img.alt = nameCart.name;
     titel.textContent = nameCart.name;
 
-    IncreaseImages.addEventListener('click', () => {
+    increaseImages.addEventListener('click', () => {
         openModalWindow(popupUserIncrease);
         addFotoCard.src = nameCart.link;
         addFotoCard.alt = nameCart.name;

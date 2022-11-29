@@ -17,13 +17,7 @@
 
 @media (min-width: 1280px) {
     .footer {
-        width: 318px;
-        margin: 0 0 60px 200px;
-    }
-}
-
-@media (min-width: 1300px) {
-    .footer {
-        margin: auto;
+        width: 880px;
+        margin: 0 auto 60px;
     }
 }
