@@ -30,7 +30,7 @@ input (для строк ввода);
 
 Ссылка на Github: https://github.com/Fra1zed/Mesto
 
-Рабочий сайт: https://fra1zed.github.io/Mesto/
+Рабочий сайт: antonliad.github.io/Mesto/
 
 
 
