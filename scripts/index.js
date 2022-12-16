@@ -1,11 +1,89 @@
-//  Отрытие popup 
+const buttonOpenPopupUser = document.querySelector('.profile__rectangle'); // кнопка открытия PopupUser
+const popupUser = document.querySelector('.popup-user'); // Сам PopupГser окно для имени и профессии
+const buttonClosePopupUser = popupUser.querySelector('.popup__buttom-close'); // Крестик закрытия PopupUser
+const popupUserInputName = document.querySelector('.popup__type-name'); // 1.inputName PopupUser
+const popupUserInputJob = document.querySelector('.popup__type-job'); // 2.inputJob PopupUser
+const profileTitle = document.querySelector('.profile__title'); // место куда передается 1.inputName
+const profileJob = document.querySelector('.profile__subtitle'); // место куда передается 2.inputJob
+const popupUserForm = document.querySelector('.form-user'); // FORMA ОТ PopupUser 
+const buttonPlus = document.querySelector('.profile__button'); // кнопка открытия popupFotoAdd
+const popupFotoAdd = document.querySelector('.popup-add'); // сам popupFotoAdd Окно для картики
+const buttonClosePopupFotoAdd = popupFotoAdd.querySelector('.popup__buttom-close'); // крестик для закрытия popupFotoAdd
+const potoContainet = document.querySelector('.photos'); // Место куда добавляются карточки 
+const formPopupUser = document.querySelector('.form-add'); // FORMA ОТ popupFotoAdd
+const form = document.querySelector('.popup');
+const popupFotoAddInputImg = document.querySelector('.popup__type-img'); // 1.inputImage popupFotoAdd
+const popupFotoAddInputTitle = document.querySelector('.popup__type-title');  // 2.inputTitle popupFotoAdd
+const addFotoCard = document.querySelector('.popup-foto__images'); // место куда передается 1.inputImage
+const popupFotoTitle = document.querySelector('.popup-foto__title'); // место куда передается 2.inputTitle
+const submitPopupUser = formPopupUser.querySelector('.popup__button'); // SUBMIT для popupFotoAdd
+const cardTemplate = document.querySelector('#template').content; // TEMPLATE 
+cardTemplate.querySelector('.photo'); // получения всего, что есть в TEMPLATE
+const popupImage = document.querySelector('.photo__image'); // Фотография (которую можно увеличить)
+const popupFoto = document.querySelector('.popup-foto'); // Сам popupFoto в котором карточка увеличина 
+const battonClosePopupFoto = popupFoto.querySelector('.popup__buttom-close'); // крестик который закрывает popupFoto
+
+const initialCards = [ // Массив для стандартных карточек 
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+const enableValidation = {
+    formSelector: '.popup',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button-active',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'form__input-error-active',
+};
+
+//<---------------------------------------  import ------------------------------------------>
+
+import Card from '../scripts/Card.js'
+import FormValidator from '../scripts/FormValidator.js'
+
+export { popupFoto, addFotoCard, popupFotoTitle }
+
+//<---------------------------------------  вызов Class-ов ---------------------------------->
+
+// Проганяем [] и передаем все в class Card 
+initialCards.forEach((item) => {
+    const card = new Card(item, '.template');
+    const cardGenerate = card._generateCard();
+
+    document.querySelector('.photos').append(cardGenerate);
+})
+
+const editorInputFormValidator = new FormValidator(enableValidation, form);
+
+//<----------------------------------- Отрытие popup --------------------------------------->
 
 function openModalWindow(modalWindow) {
     modalWindow.classList.add('popup_opened');
     addListener();
 }
-
-// Закрытие popup close
 
 function closeModalWindow(window) {
     window.classList.remove('popup_opened');
@@ -20,7 +98,7 @@ function removeListene() {
     document.removeEventListener('keydown', closeByEscape);
 };
 
-// Закрытие popup delete
+//<---------------------------------------  Закрытие target ------------------------------->
 
 function closurePopupUser(evt) {
     if (evt.target === evt.currentTarget) {
@@ -28,145 +106,11 @@ function closurePopupUser(evt) {
     }
 }
 
-function closurePopupFotoSev(evt) {
+function closurepopupFotoAdd(evt) {
     if (evt.target === evt.currentTarget) {
-        closeModalWindow(popupFotoSev);
+        closeModalWindow(popupFotoAdd);
     }
 }
-
-// Popup Img Open 
-
-function addPhotoWindowPopupUser() {
-    openModalWindow(popupUserIncrease);
-    addFotoCard.src = img.src;
-    addFotoCard.alt = img.src;
-    popupFotoTitle.textContent = title.textContent;
-};
-
-// Передача popup = user
-
-function handleProfileFormSubmit(evt) {
-    evt.preventDefault();
-    profileTitle.textContent = popupName.value;
-    profileJob.textContent = popupJob.value;
-    closeModalWindow(popupUser);
-}
-
-// Обработчик событий  popupTitle
-
-const handleAddFormSubmit = (event) => {
-    event.preventDefault();
-    renderCard({ link: popupImg.value, name: popupTitle.value });
-    popupImg.value = '';
-    popupTitle.value = '';
-    closeModalWindow(popupFotoSev);
-}
-
-// Закрытие увеличенной фотки
-
-function collapseIncreaseImages() {
-    closeModalWindow(popupUserIncrease);
-}
-
-function closureIncreaseImages(evt) {
-    if (evt.target === evt.currentTarget) {
-        closeModalWindow(popupUserIncrease);
-    }
-}
-
-// Удаление карты 
-
-const handleDeleteCard = (event) => {
-    event.target.closest('.photo').remove();
-}
-
-// Генерация карты 
-
-const generateCard = (nameCart) => {
-    const newCard = cardTemplate.cloneNode(true);
-    const increaseImages = newCard.querySelector('.photo__image');
-    const img = newCard.querySelector('.photo__image');
-    const titel = newCard.querySelector('.photo__title');
-    const cardRemoval = newCard.querySelector('.photo__removel').addEventListener('click', handleDeleteCard)
-    const like = newCard.querySelector('.photo__like');
-
-    like.addEventListener('click', (event) => event.target.classList.toggle('photo__like_active'));
-
-    img.src = nameCart.link;
-    img.alt = nameCart.name;
-    titel.textContent = nameCart.name;
-
-    increaseImages.addEventListener('click', () => {
-        openModalWindow(popupUserIncrease);
-        addFotoCard.src = nameCart.link;
-        addFotoCard.alt = nameCart.name;
-        popupFotoTitle.textContent = nameCart.name;
-    });
-
-    return newCard;
-}
-
-// Добавление карточки 
-
-const renderCard = (nameCart) => {
-    potoContainet.prepend(generateCard(nameCart));
-};
-
-// Рендер всех карточек 
-
-formAdd.addEventListener('submit', handleAddFormSubmit);
-
-// Рендер карточек 
-
-initialCards.forEach((nameCart) => {
-    renderCard(nameCart);
-})
-
-function openInputEdit() {
-    openModalWindow(popupUser);
-    removingErrorInputPopup(popupUser);
-    popupName.value = profileTitle.textContent;
-    popupJob.value = profileJob.textContent;
-}
-
-function openInputAddFoto() {
-    openModalWindow(popupFotoSev);
-    removingErrorInputPopup(popupFotoSev);
-    formAdd.reset();
-    blockButton(buttonElement, 'popup__button-active');
-}
-
-function blockButton(button, buttonSelectorDisabled) {
-    button.classList.add(buttonSelectorDisabled);
-    buttonElement.disabled = true;
-}
-
-// addEventListener
-
-buttonUser.addEventListener('click', openInputEdit);
-
-popupUserClose.addEventListener('click', () => {
-    closeModalWindow(popupUser);
-});
-
-popupUser.addEventListener('click', closurePopupUser);
-
-contantElement.addEventListener('submit', handleProfileFormSubmit);
-
-buttonPlus.addEventListener('click', openInputAddFoto);
-
-popupFotoClose.addEventListener('click', () => {
-    closeModalWindow(popupFotoSev);
-});
-
-// Фото
-
-closeIncreaseImages.addEventListener('click', collapseIncreaseImages);
-
-popupUserIncrease.addEventListener('click', closureIncreaseImages);
-
-popupFotoSev.addEventListener('click', closurePopupFotoSev);
-
 
 // Закрытие по кнопке Escepe
 
@@ -177,3 +121,111 @@ function closeByEscape(evt) {
     }
 }
 
+//<---------------------------------------  Закрытие Escape -------------------------------->
+
+// Закрытие увеличенной фотки
+
+// function collapseIncreaseImages() {
+//     closeModalWindow(popupFoto);
+// }
+
+function closureIncreaseImages(evt) {
+    if (evt.target === evt.currentTarget) {
+        closeModalWindow(popupFoto);
+    }
+}
+
+/**                                             ^
+ *    <--------------------------------- Закрытие открытие -------------------------------->
+ */
+
+// Popup Img Open 
+
+function addPhotoWindowPopupUser() {
+    openModalWindow(popupFoto);
+    addFotoCard.src = img.src;
+    addFotoCard.alt = img.src;
+    popupFotoTitle.textContent = title.textContent;
+};
+
+// Передача popup = user
+
+function handleProfileFormSubmit(evt) {
+    evt.preventDefault();
+    profileTitle.textContent = popupUserInputName.value;
+    profileJob.textContent = popupUserInputJob.value;
+    closeModalWindow(popupUser);
+}
+
+// Обработчик событий  popupFotoAddInputTitle
+
+const handleAddFormSubmit = (event) => {
+    event.preventDefault();
+
+    // const cards = new Card({
+    //    : popupFotoAddInputImg.value,
+    // : popupFotoAddInputTitle.value
+    // });
+    popupFotoAddInputImg.value = '';
+    popupFotoAddInputTitle.value = '';
+    closeModalWindow(popupFotoAdd);
+}
+
+// <------------------------ Обработчики и передача данных картинке --------------------->
+
+
+function openInputEdit() {
+    openModalWindow(popupUser);
+    // removingErrorInputPopup(popupUser);
+    popupUserInputName.value = profileTitle.textContent;
+    popupUserInputJob.value = profileJob.textContent;
+}
+
+function openInputAddFoto() {
+    openModalWindow(popupFotoAdd);
+    // removingErrorInputPopup(popupFotoAdd);
+    formPopupUser.reset();
+    blockButton(submitPopupUser, 'popup__button-active');
+}
+
+function blockButton(button, buttonSelectorDisabled) {
+    button.classList.add(buttonSelectorDisabled);
+    submitPopupUser.disabled = true;
+}
+
+// <--------------------------------------- Ивенты ------------------------------------>
+
+buttonOpenPopupUser.addEventListener('click', openInputEdit);
+
+buttonClosePopupUser.addEventListener('click', () => {
+    closeModalWindow(popupUser);
+});
+
+popupUser.addEventListener('click', closurePopupUser);
+
+buttonPlus.addEventListener('click', openInputAddFoto);
+
+buttonClosePopupFotoAdd.addEventListener('click', () => {
+    closeModalWindow(popupFotoAdd);
+});
+
+// Фото
+
+battonClosePopupFoto.addEventListener('click', () => {
+    closeModalWindow(popupFoto);
+});
+
+popupFoto.addEventListener('click', closureIncreaseImages);
+
+popupFotoAdd.addEventListener('click', closurepopupFotoAdd);
+
+
+popupUserForm.addEventListener('submit', handleProfileFormSubmit);
+
+// Рендер всех карточек 
+
+formPopupUser.addEventListener('submit', handleAddFormSubmit);
+
+document.addEventListener('keydown', () => {
+    closeModalWindow(popupFoto);
+}) // надо менять 

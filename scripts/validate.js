@@ -1,4 +1,4 @@
-function enableValidation(element) {
+function Validation(element) {
     const formList = Array.from(document.querySelectorAll(element.formSelector));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
@@ -11,20 +11,20 @@ function enableValidation(element) {
     });
 }
 
-// Работа с input ошибки 
+// Работа с input ошибки  
+function removingErrorInputPopup(popup) {
+    const removingInput = Array.from(popup.querySelectorAll('.popup__input'))
+    removingInput.forEach((inputElement) => {
+        hideInputError(popup, inputElement, { inputErrorClass: 'popup__input_type_error' });
+    })
+}
+
 
 function showInputError(formElement, inputElement, errorMessage, element) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(element.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(element.errorClass);
-}
-
-function removingErrorInputPopup(popup) {
-    const removingInput = Array.from(popup.querySelectorAll('.popup__input'))
-    removingInput.forEach((inputElement) => {
-        hideInputError(popup, inputElement, { inputErrorClass: 'popup__input_type_error' });
-    })
 }
 
 function hideInputError(formElement, inputElement, element) {
@@ -73,7 +73,7 @@ function toggleButtonState(inputList, buttonElement, element) {
     }
 };
 
-enableValidation({
+Validation = ({
     formSelector: '.popup',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
