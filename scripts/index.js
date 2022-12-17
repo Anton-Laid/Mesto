@@ -64,7 +64,7 @@ const enableValidation = {
 import Card from '../scripts/Card.js'
 import FormValidator from '../scripts/FormValidator.js'
 
-export { popupFoto, addFotoCard, popupFotoTitle }
+export { popupFoto, addFotoCard, popupFotoTitle, openModalWindow }
 
 //<---------------------------------------  вызов Class-ов ---------------------------------->
 
@@ -161,11 +161,6 @@ function handleProfileFormSubmit(evt) {
 
 const handleAddFormSubmit = (event) => {
     event.preventDefault();
-
-    // const cards = new Card({
-    //    : popupFotoAddInputImg.value,
-    // : popupFotoAddInputTitle.value
-    // });
     popupFotoAddInputImg.value = '';
     popupFotoAddInputTitle.value = '';
     closeModalWindow(popupFotoAdd);
@@ -225,7 +220,3 @@ popupUserForm.addEventListener('submit', handleProfileFormSubmit);
 // Рендер всех карточек 
 
 formPopupUser.addEventListener('submit', handleAddFormSubmit);
-
-document.addEventListener('keydown', () => {
-    closeModalWindow(popupFoto);
-}) // надо менять 

@@ -1,4 +1,4 @@
-import { popupFoto, addFotoCard, popupFotoTitle } from './index.js'
+import { popupFoto, addFotoCard, popupFotoTitle, openModalWindow } from './index.js'
 
 export default class Card {
     /**
@@ -40,21 +40,24 @@ export default class Card {
         this._element.querySelector('.photo__image').alt = this._link;
         this._element.querySelector('.photo__image').src = this._image;
 
-        // const buttonCloseCard =
-        this._element.querySelector('.photo__removel')
-
-            .addEventListener('click', () => this._handleDeleteCard());
-        // const buttonLike =
-        this._element.querySelector('.photo__like')
-            .addEventListener('click', () => this._eventButtonLike());
-
-        // const image =
-        this._element.querySelector('.photo__image')
-            .addEventListener('click', () => {
-                this._handleOpenPopup();
-            });
+        this._setEventListener();
 
         return this._element;
+    }
+
+    _setEventListener() {
+    this._element.querySelector('.photo__removel')
+    .addEventListener('click', () => {
+    this._handleDeleteCard();
+        })
+    this._element.querySelector('.photo__like')
+    .addEventListener('click', (evt) => {
+    this._eventButtonLike(evt)
+    })
+    this._element.querySelector('.photo__image')
+    .addEventListener('click', () => {
+        this._handleOpenPopup();
+    });
     }
 
     _handleDeleteCard() {
@@ -62,18 +65,16 @@ export default class Card {
         this._element = null;
     }
 
-    _eventButtonLike() {
-        //const buttonLikeToggle = 
-        this._element.querySelector('.photo__like')
-            .classList.toggle('photo__like_active'); // надо менять 
+    _eventButtonLike(evt) {
+        evt.target.classList.toggle('photo__like_active');
     }
 
     //<------------------------ Передача данных popupImage --------------------------------->
 
     _handleOpenPopup() {
-        popupFoto.classList.add('popup_opened');
-        addFotoCard.src = this._image;
         popupFotoTitle.textContent = this._name;
+        addFotoCard.alt = this._link;
+        addFotoCard.src = this._image;
+       openModalWindow(popupFoto);
     }
 }
-
