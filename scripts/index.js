@@ -61,8 +61,8 @@ const enableValidation = {
 
 //<---------------------------------------  import ------------------------------------------>
 
-import Card from '../scripts/Card.js'
-import FormValidator from '../scripts/FormValidator.js'
+import Card from './Card.js'
+import FormValidator from './FormValidator.js'
 
 export { popupFoto, addFotoCard, popupFotoTitle, openModalWindow }
 
@@ -123,21 +123,13 @@ function closeByEscape(evt) {
 
 //<---------------------------------------  Закрытие Escape -------------------------------->
 
-// Закрытие увеличенной фотки
-
-// function collapseIncreaseImages() {
-//     closeModalWindow(popupFoto);
-// }
-
 function closureIncreaseImages(evt) {
     if (evt.target === evt.currentTarget) {
         closeModalWindow(popupFoto);
     }
 }
-
-/**                                             ^
- *    <--------------------------------- Закрытие открытие -------------------------------->
- */
+                                            
+//<--------------------------------- Закрытие открытие -------------------------------->
 
 // Popup Img Open 
 
