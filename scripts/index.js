@@ -11,7 +11,6 @@ const popupFotoAdd = document.querySelector('.popup-add'); // сам popupFotoAd
 const buttonClosePopupFotoAdd = popupFotoAdd.querySelector('.popup__buttom-close'); // крестик для закрытия popupFotoAdd
 const potoContainet = document.querySelector('.photos'); // Место куда добавляются карточки 
 const formPopupUser = document.querySelector('.form-add'); // FORMA ОТ popupFotoAdd
-const form = document.querySelector('.popup');
 const popupFotoAddInputImg = document.querySelector('.popup__type-img'); // 1.inputImage popupFotoAdd
 const popupFotoAddInputTitle = document.querySelector('.popup__type-title');  // 2.inputTitle popupFotoAdd
 const addFotoCard = document.querySelector('.popup-foto__images'); // место куда передается 1.inputImage
@@ -22,6 +21,7 @@ cardTemplate.querySelector('.photo'); // получения всего, что �
 const popupImage = document.querySelector('.photo__image'); // Фотография (которую можно увеличить)
 const popupFoto = document.querySelector('.popup-foto'); // Сам popupFoto в котором карточка увеличина 
 const battonClosePopupFoto = popupFoto.querySelector('.popup__buttom-close'); // крестик который закрывает popupFoto
+const form = document.querySelector('.popup');
 
 const initialCards = [ // Массив для стандартных карточек 
     {
