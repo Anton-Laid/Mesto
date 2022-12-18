@@ -9,10 +9,10 @@ export default class Card {
      * все передаем внуть class и больше негде нам в проекте не нужно это) 
      * чтобы создавался новый {} прописываем this. (<-- грубо говоря). 
      */
-    constructor(data, templateSelector) {
-        this._name = data.name;
-        this._image = data.link;
-        this._link = data.link;
+    constructor(name, link, templateSelector) {
+        this._name = name.name;
+        this._image = link.link;
+        this._link = link.link;
         this._templateSelector = templateSelector;
     }
     /**
@@ -33,7 +33,7 @@ export default class Card {
      * 2. Передаем все из [] 
      * @returns возращает в новую карточку все значения []
      */
-    _generateCard() {
+    generateCard() {
         this._element = this._getTemplate();
 
         this._element.querySelector('.photo__title').textContent = this._name;
@@ -46,18 +46,18 @@ export default class Card {
     }
 
     _setEventListener() {
-    this._element.querySelector('.photo__removel')
-    .addEventListener('click', () => {
-    this._handleDeleteCard();
-        })
-    this._element.querySelector('.photo__like')
-    .addEventListener('click', (evt) => {
-    this._eventButtonLike(evt)
-    })
-    this._element.querySelector('.photo__image')
-    .addEventListener('click', () => {
-        this._handleOpenPopup();
-    });
+        this._element.querySelector('.photo__removel')
+            .addEventListener('click', () => {
+                this._handleDeleteCard();
+            })
+        this._element.querySelector('.photo__like')
+            .addEventListener('click', (evt) => {
+                this._eventButtonLike(evt)
+            })
+        this._element.querySelector('.photo__image')
+            .addEventListener('click', () => {
+                this._handleOpenPopup();
+            });
     }
 
     _handleDeleteCard() {
@@ -75,6 +75,7 @@ export default class Card {
         popupFotoTitle.textContent = this._name;
         addFotoCard.alt = this._link;
         addFotoCard.src = this._image;
-       openModalWindow(popupFoto);
+        openModalWindow(popupFoto);
     }
 }
+

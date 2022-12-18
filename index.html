@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto Russia</title>
     <link rel="stylesheet" href="./pages/index.css">
-    <script src="scripts/index.js" type="module" defer></script>
 </head>
 
 <body class="body">
@@ -19,8 +18,8 @@
             <section class="profile">
                 <div class="profile__image"></div>
                 <div class="profile__info">
-                    <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <p class="profile__subtitle">Исследователь океана</p>
+                    <h1 class="profile__title">Anton Laid</h1>
+                    <p class="profile__subtitle">See With New Eyes</p>
                     <button class="profile__rectangle" type="button"><img src="images/Vector__pensol.png" alt="карандаш"
                             class="profile__vector"></button>
                 </div>
@@ -33,7 +32,7 @@
         </main>
     </div>
     <footer class="footer">
-        <p class="footer__copyright">&copy; 2022 Mesto Russia &nbsp; &nbsp; &nbsp; Anton Laid</p>
+        <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
     <!-- Профель -->
@@ -42,12 +41,12 @@
         <form class="form form-user" name="form" id="formUser" novalidate>
             <h2 class="popup__title">Редактировать профиль</h2>
 
-            <input id="form-name" class="popup__input popup__type-name" type="text" value="Жак-Ив Кусто" name="name"
+            <input id="form-name" class="popup__input popup__type-name" type="text" value="Anton Laid" name="name"
                 placeholder="Имя" required minlength="2" maxlength="40">
             <span class="form-name-error form__input-error"></span>
 
 
-            <input id="form-job" class="popup__input popup__type-job" type="text" value="Исследователь океана"
+            <input id="form-job" class="popup__input popup__type-job" type="text" value="See With New Eyes"
                 name="profession" placeholder="О себе" required minlength="2" maxlength="200">
             <span class="form-job-error form__input-error"></span>
 
@@ -98,6 +97,7 @@
             <button class="photo__removel"></button>
         </div>
     </template>
+    <script src="scripts/index.js" type="module"></script>
 </body>
 
 </html>
