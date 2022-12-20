@@ -75,7 +75,7 @@ const editorInputFormValidatorFotoAdd = new FormValidator(enableValidation, '.fo
 editorInputFormValidatorUser.enableValidation();
 editorInputFormValidatorFotoAdd.enableValidation();
 
-function addingInformationCard(name, link, template) {
+function addInformationCard(name, link, template) {
     const renderCard = new Card(name, link, template);
     const cardPrepend = renderCard.generateCard();
     return cardPrepend;
@@ -83,12 +83,12 @@ function addingInformationCard(name, link, template) {
 
 function addPhotoInTemplate(e) {
     e.preventDefault();
-    addCard(addingInformationCard(popupFotoAddInputTitle.value, popupFotoAddInputImg.value, '#template'));
+    addCard(addInformationCard(popupFotoAddInputTitle.value, popupFotoAddInputImg.value, '#template'));
     closeModalWindow(popupFotoAdd);
 }
 
 initialCards.forEach((item) => { //массив с карточками 
-    addCard(addingInformationCard(item, item, '#template'));
+    addCard(addInformationCard(item.name, item.link, '#template'));
 });
 
 function addCard(card) {

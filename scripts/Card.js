@@ -10,9 +10,9 @@ export default class Card {
      * чтобы создавался новый {} прописываем this. (<-- грубо говоря). 
      */
     constructor(name, link, templateSelector) {
-        this._name = name.name;
-        this._image = link.link;
-        this._link = link.link;
+        this._name = name;
+        this._image = link;
+        this._link = link;
         this._templateSelector = templateSelector;
     }
     /**
