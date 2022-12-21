@@ -9,68 +9,32 @@ const popupUserForm = document.querySelector('.form-user'); // FORMA ОТ PopupU
 const buttonPlus = document.querySelector('.profile__button'); // кнопка открытия popupFotoAdd
 const popupFotoAdd = document.querySelector('.popup-add'); // сам popupFotoAdd Окно для картики
 const buttonClosePopupFotoAdd = popupFotoAdd.querySelector('.popup__buttom-close'); // крестик для закрытия popupFotoAdd
-const potoContainet = document.querySelector('.photos'); // Место куда добавляются карточки 
+const potoContainer = document.querySelector('.photos'); // Место куда добавляются карточки 
 const popupFhotoForm = document.querySelector('.form-add'); // FORMA ОТ popupFotoAdd
 const popupFotoAddInputImg = document.querySelector('.popup__type-img'); // 1.inputImage popupFotoAdd
 const popupFotoAddInputTitle = document.querySelector('.popup__type-title');  // 2.inputTitle popupFotoAdd
-const addFotoCard = document.querySelector('.popup-foto__images'); // место куда передается 1.inputImage
+const fotoCardAdd = document.querySelector('.popup-foto__images'); // место куда передается 1.inputImage
 const popupFotoTitle = document.querySelector('.popup-foto__title'); // место куда передается 2.inputTitle
 const submitPopupUser = popupFhotoForm.querySelector('.popup__button'); // SUBMIT для popupFotoAdd
 const cardTemplate = document.querySelector('#template').content; // TEMPLATE 
 cardTemplate.querySelector('.photo'); // получения всего, что есть в TEMPLATE
 const popupImage = document.querySelector('.photo__image'); // Фотография (которую можно увеличить)
 const popupFoto = document.querySelector('.popup-foto'); // Сам popupFoto в котором карточка увеличина 
-const battonClosePopupFoto = popupFoto.querySelector('.popup__buttom-close'); // крестик который закрывает popupFoto
+const buttonClosePopupFoto = popupFoto.querySelector('.popup__buttom-close'); // крестик который закрывает popupFoto
 const form = document.querySelector('.popup__input');
 
-const initialCards = [ // Массив для стандартных карточек 
-    {
-        name: 'Go...',
-        link: 'https://images.unsplash.com/photo-1671137513104-89166b4242f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-    },
-    {
-        name: 'Street',
-        link: 'https://images.unsplash.com/photo-1647292344198-85a68d728eef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-    },
-    {
-        name: 'Smoke',
-        link: 'https://images.unsplash.com/photo-1536779886223-e970e8019e5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-    },
-    {
-        name: 'Metro',
-        link: 'https://images.unsplash.com/photo-1640033907202-e5dc78b9c8a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-    },
-    {
-        name: 'New York',
-        link: 'https://images.unsplash.com/photo-1498447817931-2edda1605b97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-    },
-    {
-        name: 'Japan',
-        link: 'https://images.unsplash.com/photo-1671272043051-f8a68b8e439f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-    }
-];
+//<---------------------------------------  import и export ------------------------------------------>
 
-const enableValidation = {
-    formSelector: '.popup',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button-active',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'form__input-error-active',
-};
-
-
-//<---------------------------------------  import ------------------------------------------>
-
+import { initialCards, validationConfig } from './constants.js'
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
 
-export { popupFoto, addFotoCard, popupFotoTitle, openModalWindow }
+export { popupFoto, fotoCardAdd, popupFotoTitle, openModalWindow }
 
 //<---------------------------------------  вызов Class-ов ---------------------------------->
 
-const editorInputFormValidatorUser = new FormValidator(enableValidation, '.form-user');
-const editorInputFormValidatorFotoAdd = new FormValidator(enableValidation, '.form-add');
+const editorInputFormValidatorUser = new FormValidator(validationConfig, '.form-user');
+const editorInputFormValidatorFotoAdd = new FormValidator(validationConfig, '.form-add');
 
 editorInputFormValidatorUser.enableValidation();
 editorInputFormValidatorFotoAdd.enableValidation();
@@ -80,6 +44,8 @@ function addInformationCard(name, link, template) {
     const cardPrepend = renderCard.generateCard();
     return cardPrepend;
 }
+
+//<---------------------------------------  Создание карточки ---------------------------------->
 
 function addPhotoInTemplate(e) {
     e.preventDefault();
@@ -92,7 +58,7 @@ initialCards.forEach((item) => { //массив с карточками
 });
 
 function addCard(card) {
-    potoContainet.prepend(card);
+    potoContainer.prepend(card);
 }
 
 //<----------------------------------- Отрытие popup --------------------------------------->
@@ -117,19 +83,13 @@ function removeListene() {
 
 //<---------------------------------------  Закрытие target ------------------------------->
 
-function closurePopupUser(evt) {
+function closurePopup(evt) {
     if (evt.target === evt.currentTarget) {
-        closeModalWindow(popupUser);
+        closeModalWindow(evt.currentTarget);
     }
 }
 
-function closurepopupFotoAdd(evt) {
-    if (evt.target === evt.currentTarget) {
-        closeModalWindow(popupFotoAdd);
-    }
-}
-
-// Закрытие по кнопке Escepe
+//<---------------------------------------  Закрытие Escape -------------------------------->
 
 function closeByEscape(evt) {
     if (evt.key === 'Escape') {
@@ -137,38 +97,6 @@ function closeByEscape(evt) {
         closeModalWindow(openedPopup);
     }
 }
-
-//<---------------------------------------  Закрытие Escape -------------------------------->
-
-function closureIncreaseImages(evt) {
-    if (evt.target === evt.currentTarget) {
-        closeModalWindow(popupFoto);
-    }
-}
-
-//<--------------------------------- Закрытие открытие -------------------------------->
-
-// Добавление новой карточки  // popupFotoAddInputImg // popupFotoAddInputTitle
-
-// function addCard(card) {
-//     potoContainet.prepend(card);
-// }
-
-// function addPhotoInTemplate(e) {
-//     e.preventDefault();
-//     addCard(addingInformationCard(popupFotoAddInputTitle.value, popupFotoAddInputImg.value, '#template'));
-//     closeModalWindow(popupFotoAdd);
-// }
-
-// initialCards.forEach((item) => { //массив с карточками 
-//     addCard(addingInformationCard(item, item, '#template'));
-// });
-
-// function addingInformationCard(name, link, template) {
-//     const renderCard = new Card(name, link, template);
-//     const cardPrepend = renderCard.generateCard();
-//     return cardPrepend;
-// }
 
 // Передача popup = user
 
@@ -183,7 +111,7 @@ function handleProfileFormSubmit(evt) {
 
 function openInputEdit() {
     openModalWindow(popupUser);
-    editorInputFormValidatorUser.closeValidForm();
+    editorInputFormValidatorUser.resetValidation();
     popupUserInputName.value = profileTitle.textContent;
     popupUserInputJob.value = profileJob.textContent;
 }
@@ -191,8 +119,7 @@ function openInputEdit() {
 function openInputAddFoto() {
     openModalWindow(popupFotoAdd);
     popupFhotoForm.reset();
-    editorInputFormValidatorFotoAdd.closeValidForm();
-    editorInputFormValidatorFotoAdd._toggleButtonState();
+    editorInputFormValidatorFotoAdd.resetValidation();
 }
 
 // <--------------------------------------- Ивенты ------------------------------------>
@@ -203,7 +130,7 @@ buttonClosePopupUser.addEventListener('click', () => {
     closeModalWindow(popupUser);
 });
 
-popupUser.addEventListener('click', closurePopupUser);
+popupUser.addEventListener('click', closurePopup);//
 
 buttonPlus.addEventListener('click', openInputAddFoto);
 
@@ -213,16 +140,16 @@ buttonClosePopupFotoAdd.addEventListener('click', () => {
 
 // Фото
 
-battonClosePopupFoto.addEventListener('click', () => {
+buttonClosePopupFoto.addEventListener('click', () => {
     closeModalWindow(popupFoto);
 });
 
-popupFoto.addEventListener('click', closureIncreaseImages);
+popupFoto.addEventListener('click', closurePopup); //
 
-popupFotoAdd.addEventListener('click', closurepopupFotoAdd);
+popupFotoAdd.addEventListener('click', closurePopup);//
 
 popupUserForm.addEventListener('submit', handleProfileFormSubmit);
 
-// Рендер всех карточек 
+// Рендер всех карточек
 
 popupFhotoForm.addEventListener('submit', addPhotoInTemplate);

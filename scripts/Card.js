@@ -1,4 +1,4 @@
-import { popupFoto, addFotoCard, popupFotoTitle, openModalWindow } from './index.js'
+import { popupFoto, fotoCardAdd, popupFotoTitle, openModalWindow } from './index.js'
 
 export default class Card {
     /**
@@ -21,7 +21,7 @@ export default class Card {
      */
 
     _getTemplate() {
-        const cardTemplate = document.querySelector('#template').content
+        const cardTemplate = document.querySelector(this._templateSelector).content
             .querySelector('.photo')
             .cloneNode(true);
 
@@ -37,8 +37,9 @@ export default class Card {
         this._element = this._getTemplate();
 
         this._element.querySelector('.photo__title').textContent = this._name;
-        this._element.querySelector('.photo__image').alt = this._link;
-        this._element.querySelector('.photo__image').src = this._image;
+        this._cardImage = this._element.querySelector('.photo__image');
+        this._cardImage.alt = this._link;
+        this._cardImage.src = this._image;
 
         this._setEventListener();
 
@@ -50,11 +51,11 @@ export default class Card {
             .addEventListener('click', () => {
                 this._handleDeleteCard();
             })
-        this._element.querySelector('.photo__like')
-            .addEventListener('click', (evt) => {
-                this._eventButtonLike(evt)
+        this._element
+            .addEventListener('click', () => {
+                this._eventButtonLike();
             })
-        this._element.querySelector('.photo__image')
+        this._cardImage
             .addEventListener('click', () => {
                 this._handleOpenPopup();
             });
@@ -65,16 +66,17 @@ export default class Card {
         this._element = null;
     }
 
-    _eventButtonLike(evt) {
-        evt.target.classList.toggle('photo__like_active');
+    _eventButtonLike() {
+        this._element.querySelector('.photo__like')
+            .classList.toggle('photo__like_active');
     }
 
     //<------------------------ Передача данных popupImage --------------------------------->
 
     _handleOpenPopup() {
         popupFotoTitle.textContent = this._name;
-        addFotoCard.alt = this._link;
-        addFotoCard.src = this._image;
+        fotoCardAdd.alt = this._link;
+        fotoCardAdd.src = this._image;
         openModalWindow(popupFoto);
     }
 }
