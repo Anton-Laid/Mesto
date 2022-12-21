@@ -37,6 +37,7 @@ export default class Card {
         this._element = this._getTemplate();
 
         this._element.querySelector('.photo__title').textContent = this._name;
+        this._cardLike = this._element.querySelector('.photo__like');
         this._cardImage = this._element.querySelector('.photo__image');
         this._cardImage.alt = this._link;
         this._cardImage.src = this._image;
@@ -51,9 +52,10 @@ export default class Card {
             .addEventListener('click', () => {
                 this._handleDeleteCard();
             })
-        this._element
-            .addEventListener('click', () => {
-                this._eventButtonLike();
+
+        this._cardLike
+            .addEventListener('click', (e) => {
+                this._eventButtonLike(e);
             })
         this._cardImage
             .addEventListener('click', () => {
@@ -66,9 +68,8 @@ export default class Card {
         this._element = null;
     }
 
-    _eventButtonLike() {
-        this._element.querySelector('.photo__like')
-            .classList.toggle('photo__like_active');
+    _eventButtonLike(e) {
+        e.target.classList.toggle('photo__like_active');
     }
 
     //<------------------------ Передача данных popupImage --------------------------------->
