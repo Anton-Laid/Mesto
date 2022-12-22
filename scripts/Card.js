@@ -1,25 +1,26 @@
-import { popupFoto, fotoCardAdd, popupFotoTitle, openModalWindow } from './index.js'
+import { popupFhoto, fhotoCardAdd, popupFhotoTitle } from './index.js'
 
 export default class Card {
     /**
-     * 
      * @param {Это все эелементы [] name, link} data 
      * @param {#template который мы находим в _getTemplate() 
      * и капируем } templateSelector 
      * все передаем внуть class и больше негде нам в проекте не нужно это) 
      * чтобы создавался новый {} прописываем this. (<-- грубо говоря). 
      */
-    constructor(name, link, templateSelector) {
+
+    constructor(name, link, templateSelector, openModalWindow) {
         this._name = name;
         this._image = link;
         this._link = link;
         this._templateSelector = templateSelector;
+        this._openModalWindow = openModalWindow;
     }
+
     /**
      * 1. ищим template и капируем его 
      * 2. @retur возращаем  
      */
-
     _getTemplate() {
         const cardTemplate = document.querySelector(this._templateSelector).content
             .querySelector('.photo')
@@ -52,7 +53,6 @@ export default class Card {
             .addEventListener('click', () => {
                 this._handleDeleteCard();
             })
-
         this._cardLike
             .addEventListener('click', (e) => {
                 this._eventButtonLike(e);
@@ -75,10 +75,9 @@ export default class Card {
     //<------------------------ Передача данных popupImage --------------------------------->
 
     _handleOpenPopup() {
-        popupFotoTitle.textContent = this._name;
-        fotoCardAdd.alt = this._link;
-        fotoCardAdd.src = this._image;
-        openModalWindow(popupFoto);
+        popupFhotoTitle.textContent = this._name;
+        fhotoCardAdd.alt = this._link;
+        fhotoCardAdd.src = this._image;
+        this._openModalWindow(popupFhoto);
     }
 }
-

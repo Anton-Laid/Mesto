@@ -1,56 +1,59 @@
 const buttonOpenPopupUser = document.querySelector('.profile__rectangle'); // кнопка открытия PopupUser
 const popupUser = document.querySelector('.popup-user'); // Сам PopupГser окно для имени и профессии
-const buttonClosePopupUser = popupUser.querySelector('.popup__buttom-close'); // Крестик закрытия PopupUser
+const buttonClosePopupUser = popupUser.querySelector('.popup__button-close'); // Крестик закрытия PopupUser
 const popupUserInputName = document.querySelector('.popup__type-name'); // 1.inputName PopupUser
 const popupUserInputJob = document.querySelector('.popup__type-job'); // 2.inputJob PopupUser
 const profileTitle = document.querySelector('.profile__title'); // место куда передается 1.inputName
 const profileJob = document.querySelector('.profile__subtitle'); // место куда передается 2.inputJob
 const popupUserForm = document.querySelector('.form-user'); // FORMA ОТ PopupUser 
-const buttonPlus = document.querySelector('.profile__button'); // кнопка открытия popupFotoAdd
-const popupFotoAdd = document.querySelector('.popup-add'); // сам popupFotoAdd Окно для картики
-const buttonClosePopupFotoAdd = popupFotoAdd.querySelector('.popup__buttom-close'); // крестик для закрытия popupFotoAdd
-const potoContainer = document.querySelector('.photos'); // Место куда добавляются карточки 
-const popupFhotoForm = document.querySelector('.form-add'); // FORMA ОТ popupFotoAdd
-const popupFotoAddInputImg = document.querySelector('.popup__type-img'); // 1.inputImage popupFotoAdd
-const popupFotoAddInputTitle = document.querySelector('.popup__type-title');  // 2.inputTitle popupFotoAdd
-const fotoCardAdd = document.querySelector('.popup-foto__images'); // место куда передается 1.inputImage
-const popupFotoTitle = document.querySelector('.popup-foto__title'); // место куда передается 2.inputTitle
-const submitPopupUser = popupFhotoForm.querySelector('.popup__button'); // SUBMIT для popupFotoAdd
-const cardTemplate = document.querySelector('#template').content; // TEMPLATE 
-cardTemplate.querySelector('.photo'); // получения всего, что есть в TEMPLATE
+const buttonPlus = document.querySelector('.profile__button'); // кнопка открытия popupFhotoAdd
+const popupFhotoAdd = document.querySelector('.popup-add'); // сам popupFhotoAdd Окно для картики
+const buttonClosePopupFhotoAdd = popupFhotoAdd.querySelector('.popup__button-close'); // крестик для закрытия popupFhotoAdd
+const photoContainer = document.querySelector('.photos'); // Место куда добавляются карточки 
+const popupFhotoForm = document.querySelector('.form-add'); // FORMA ОТ popupFhotoAdd
+const popupFhotoAddInputImg = document.querySelector('.popup__type-img'); // 1.inputImage popupFhotoAdd
+const popupFhotoAddInputTitle = document.querySelector('.popup__type-title');  // 2.inputTitle popupFhotoAdd
+const fhotoCardAdd = document.querySelector('.popup-foto__images'); // место куда передается 1.inputImage
+const popupFhotoTitle = document.querySelector('.popup-foto__title'); // место куда передается 2.inputTitle
+const submitPopupUser = popupFhotoForm.querySelector('.popup__button'); // SUBMIT для popupFhotoAdd
+const cardTemplate = document.querySelector('#template').content.querySelector('.photo'); // получения всего, что есть в TEMPLATE
 const popupImage = document.querySelector('.photo__image'); // Фотография (которую можно увеличить)
-const popupFoto = document.querySelector('.popup-foto'); // Сам popupFoto в котором карточка увеличина 
-const buttonClosePopupFoto = popupFoto.querySelector('.popup__buttom-close'); // крестик который закрывает popupFoto
+const popupFhoto = document.querySelector('.popup-foto'); // Сам popupFoto в котором карточка увеличина 
+const buttonClosePopupFhoto = popupFhoto.querySelector('.popup__button-close'); // крестик который закрывает popupFoto
 const form = document.querySelector('.popup__input');
+const popups = Array.from(document.querySelectorAll('.popup'));
 
-//<---------------------------------------  import и export ------------------------------------------>
+//<-------------------------------------- import и export -------------------------------->
 
 import { initialCards, validationConfig } from './constants.js'
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
 
-export { popupFoto, fotoCardAdd, popupFotoTitle, openModalWindow }
+export { popupFhoto, fhotoCardAdd, popupFhotoTitle }
 
-//<---------------------------------------  вызов Class-ов ---------------------------------->
-
+//<---------------------------------------  вызов Class-ов ------------------------------>
+// вызов для каждой формы
 const editorInputFormValidatorUser = new FormValidator(validationConfig, '.form-user');
 const editorInputFormValidatorFotoAdd = new FormValidator(validationConfig, '.form-add');
 
+// чтобы FormValidator заработал, нужно чтобы работал addEventListener, который будет пупускать 
+// по стуи цепочку.
 editorInputFormValidatorUser.enableValidation();
 editorInputFormValidatorFotoAdd.enableValidation();
 
+// через [] создание карточки 
 function addInformationCard(name, link, template) {
-    const renderCard = new Card(name, link, template);
+    const renderCard = new Card(name, link, template, openModalWindow);
     const cardPrepend = renderCard.generateCard();
     return cardPrepend;
 }
 
-//<---------------------------------------  Создание карточки ---------------------------------->
-
-function addPhotoInTemplate(e) {
+//<---------------------------------------  Создание карточки --------------------------->
+// через попап создание карточки 
+function handleSubmitAddCardForm(e) {
     e.preventDefault();
-    addCard(addInformationCard(popupFotoAddInputTitle.value, popupFotoAddInputImg.value, '#template'));
-    closeModalWindow(popupFotoAdd);
+    addCard(addInformationCard(popupFhotoAddInputTitle.value, popupFhotoAddInputImg.value, '#template'));
+    closeModalWindow(popupFhotoAdd);
 }
 
 initialCards.forEach((item) => { //массив с карточками 
@@ -58,38 +61,30 @@ initialCards.forEach((item) => { //массив с карточками
 });
 
 function addCard(card) {
-    potoContainer.prepend(card);
+    photoContainer.prepend(card);
 }
 
-//<----------------------------------- Отрытие popup --------------------------------------->
+//<----------------------------------- Открытие/закрытие popup -------------------------->
 
 function openModalWindow(modalWindow) {
     modalWindow.classList.add('popup_opened');
-    addListener();
+    document.addEventListener('keydown', closeByEscape);
 }
 
 function closeModalWindow(window) {
     window.classList.remove('popup_opened');
-    removeListene();
+    document.removeEventListener('keydown', closeByEscape); // даже не задумался, спасибо) 
 }
 
-function addListener() {
-    document.addEventListener('keydown', closeByEscape);
-};
+//<---------------------------------------  Закрытие target ----------------------------->
 
-function removeListene() {
-    document.removeEventListener('keydown', closeByEscape);
-};
-
-//<---------------------------------------  Закрытие target ------------------------------->
-
-function closurePopup(evt) {
-    if (evt.target === evt.currentTarget) {
-        closeModalWindow(evt.currentTarget);
+function handleClosePopupByOverlay(evt) {
+    if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__button-close')) {
+        closeModalWindow(evt.currentTarget); // очень крутая вешь, спасибо! 
     }
 }
 
-//<---------------------------------------  Закрытие Escape -------------------------------->
+//<---------------------------------------  Закрытие Escape ----------------------------->
 
 function closeByEscape(evt) {
     if (evt.key === 'Escape') {
@@ -107,7 +102,7 @@ function handleProfileFormSubmit(evt) {
     closeModalWindow(popupUser);
 }
 
-// <------------------------ Обработчики и передача данных картинке --------------------->
+// <------------------------ Обработчики и передача данных картинке -------------------->
 
 function openInputEdit() {
     openModalWindow(popupUser);
@@ -116,8 +111,8 @@ function openInputEdit() {
     popupUserInputJob.value = profileJob.textContent;
 }
 
-function openInputAddFoto() {
-    openModalWindow(popupFotoAdd);
+function openProfilePopup() {
+    openModalWindow(popupFhotoAdd);
     popupFhotoForm.reset();
     editorInputFormValidatorFotoAdd.resetValidation();
 }
@@ -130,26 +125,12 @@ buttonClosePopupUser.addEventListener('click', () => {
     closeModalWindow(popupUser);
 });
 
-popupUser.addEventListener('click', closurePopup);//
+buttonPlus.addEventListener('click', openProfilePopup);
 
-buttonPlus.addEventListener('click', openInputAddFoto);
-
-buttonClosePopupFotoAdd.addEventListener('click', () => {
-    closeModalWindow(popupFotoAdd);
-});
-
-// Фото
-
-buttonClosePopupFoto.addEventListener('click', () => {
-    closeModalWindow(popupFoto);
-});
-
-popupFoto.addEventListener('click', closurePopup); //
-
-popupFotoAdd.addEventListener('click', closurePopup);//
+popups.forEach((popup) => {
+    popup.addEventListener('click', handleClosePopupByOverlay);
+}) // это просто гениально!!!
 
 popupUserForm.addEventListener('submit', handleProfileFormSubmit);
 
-// Рендер всех карточек
-
-popupFhotoForm.addEventListener('submit', addPhotoInTemplate);
+popupFhotoForm.addEventListener('submit', handleSubmitAddCardForm);
