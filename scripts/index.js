@@ -21,77 +21,68 @@ const popupImage = document.querySelector('.photo__image'); // Фотограф�
 const popupFhoto = document.querySelector('.popup-foto'); // Сам popupFoto в котором карточка увеличина 
 const buttonClosePopupFhoto = popupFhoto.querySelector('.popup__button-close'); // крестик который закрывает popupFoto
 const form = document.querySelector('.popup__input');
-const popups = Array.from(document.querySelectorAll('.popup'));
+//const popups = Array.from(document.querySelectorAll('.popup'));
 
 //<-------------------------------------- import и export -------------------------------->
 
 import { initialCards, validationConfig } from './constants.js'
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
+import Popup from './Popup.js';
+import { Section } from './Section.js';
+import PopupWithImage from './PopupWithImage.js';
 
-export { popupFhoto, fhotoCardAdd, popupFhotoTitle }
+export { popupFhoto, fhotoCardAdd, popupFhotoTitle };
 
 //<---------------------------------------  вызов Class-ов ------------------------------>
 // вызов для каждой формы
 const editorInputFormValidatorUser = new FormValidator(validationConfig, '.form-user');
 const editorInputFormValidatorFotoAdd = new FormValidator(validationConfig, '.form-add');
 
+const interactionWithPopupUser = new Popup(popupUser);
+const interactionWithPopupPhoto = new Popup(popupFhotoAdd);
+//const interactionWithPopupPhotoSev = new Popup(popupFhoto);
+
+
+const renderTemplate = new Section({
+    items: initialCards,
+    renderer: (item) => {
+        const card = new Card(item.name, item.link, '#template', openModalWindow)
+        const cardSubmit = card.generateCard();
+        renderTemplate.addItem(cardSubmit);
+    }
+},
+    photoContainer
+);
+
+renderTemplate.renderCard();
+
+const popupWithImage = new PopupWithImage(popupFhoto);
+popupWithImage.setEventListeners() // не помогло
+
+popupImage.addEventListener('click', () => {
+    popupWithImage.open(); // и это тоже 
+})
+
 // чтобы FormValidator заработал, нужно чтобы работал addEventListener, который будет пупускать 
 // по стуи цепочку.
 editorInputFormValidatorUser.enableValidation();
 editorInputFormValidatorFotoAdd.enableValidation();
 
-// через [] создание карточки 
-function addInformationCard(name, link, template) {
-    const renderCard = new Card(name, link, template, openModalWindow);
-    const cardPrepend = renderCard.generateCard();
-    return cardPrepend;
-}
-
 //<---------------------------------------  Создание карточки --------------------------->
+
 // через попап создание карточки 
 function handleSubmitAddCardForm(e) {
     e.preventDefault();
     addCard(addInformationCard(popupFhotoAddInputTitle.value, popupFhotoAddInputImg.value, '#template'));
-    closeModalWindow(popupFhotoAdd);
-}
-
-initialCards.forEach((item) => { //массив с карточками 
-    addCard(addInformationCard(item.name, item.link, '#template'));
-});
-
-function addCard(card) {
-    photoContainer.prepend(card);
+    interactionWithPopupPhoto.close();
 }
 
 //<----------------------------------- Открытие/закрытие popup -------------------------->
 
-function openModalWindow(modalWindow) {
-    modalWindow.classList.add('popup_opened');
-    document.addEventListener('keydown', closeByEscape);
-}
+function openModalWindow(modalWindow) { } // чтобы у валидации небыло ошибки 
 
-function closeModalWindow(window) {
-    window.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closeByEscape); // даже не задумался, спасибо) 
-}
-
-//<---------------------------------------  Закрытие target ----------------------------->
-
-function handleClosePopupByOverlay(evt) {
-    if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__button-close')) {
-        closeModalWindow(evt.currentTarget); // очень крутая вешь, спасибо! 
-    }
-}
-
-//<---------------------------------------  Закрытие Escape ----------------------------->
-
-function closeByEscape(evt) {
-    if (evt.key === 'Escape') {
-        const openedPopup = document.querySelector('.popup_opened');
-        closeModalWindow(openedPopup);
-    }
-}
+function closeModalWindow(window) { } // чтобы у валидации небыло ошибки 
 
 // Передача popup = user
 
@@ -99,7 +90,7 @@ function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileTitle.textContent = popupUserInputName.value;
     profileJob.textContent = popupUserInputJob.value;
-    closeModalWindow(popupUser);
+    interactionWithPopupUser.close();
 }
 
 // <------------------------ Обработчики и передача данных картинке -------------------->
@@ -119,17 +110,32 @@ function openProfilePopup() {
 
 // <--------------------------------------- Ивенты ------------------------------------>
 
-buttonOpenPopupUser.addEventListener('click', openInputEdit);
+buttonOpenPopupUser.addEventListener('click', () =>
+    interactionWithPopupUser.setEventListeners()
+)
 
-buttonClosePopupUser.addEventListener('click', () => {
-    closeModalWindow(popupUser);
-});
+buttonPlus.addEventListener('click', () => {
+    interactionWithPopupPhoto.setEventListeners()
+    console.log('photo');
+})
 
-buttonPlus.addEventListener('click', openProfilePopup);
+buttonOpenPopupUser.addEventListener('click', () => {
+    openInputEdit();
+    interactionWithPopupUser.open() // открыть UserPopup
+    console.log('user');
 
-popups.forEach((popup) => {
-    popup.addEventListener('click', handleClosePopupByOverlay);
-}) // это просто гениально!!!
+})
+
+buttonPlus.addEventListener('click', () => {
+    openProfilePopup()
+    interactionWithPopupPhoto.open()
+})
+
+// popupImage.addEventListener('click', () => {
+//     popupWithImage.open(popupFhoto);
+//     console.log('popupFoto');
+// })
+
 
 popupUserForm.addEventListener('submit', handleProfileFormSubmit);
 
