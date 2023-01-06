@@ -6,13 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto Russia</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="body">
     <div class="page">
         <header class="header">
-            <img src="images/logo.svg" alt="Логотоип" class="header__logo">
+            <img src="<%=require('../src/images/logo.svg')%>" alt=" Логотоип" class="header__logo">
         </header>
         <main class="content">
             <section class="profile">
@@ -20,10 +19,11 @@
                 <div class="profile__info">
                     <h1 class="profile__title">Anton Laid</h1>
                     <p class="profile__subtitle">See With New Eyes</p>
-                    <button class="profile__rectangle" type="button"><img src="images/Vector__pensol.png" alt="карандаш"
-                            class="profile__vector"></button>
+                    <button class="profile__rectangle" type="button"><img alt="карандаш"
+                            src="<%=require('../src/images/Vector__pensol.png')%>" class="profile__vector"></button>
                 </div>
-                <button type="button" class="profile__button"><img src="images/Vector__plus.png" alt="Плюс">
+                <button type="button" class="profile__button"><img src="<%=require('../src/images/Vector__plus.png')%>"
+                        alt="Плюс">
                 </button>
             </section>
             <!--  Фото контейнер -->
@@ -80,7 +80,7 @@
     <div class="popup popup-foto">
         <div class="popup-foto__box">
             <img class="popup-foto__images" alt="фото"
-                src="https://images.unsplash.com/photo-1667913171373-76d98335cbf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
+                src='https://images.unsplash.com/photo-1667913171373-76d98335cbf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'>
             <p class="popup-foto__title">Название места</p>
             <button class="popup__button-close" type="button"></button>
         </div>
@@ -97,7 +97,6 @@
             <button class="photo__removel"></button>
         </div>
     </template>
-    <script src="pages/index.js" type="module"></script>
 </body>
 
 </html>
