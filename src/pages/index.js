@@ -95,4 +95,4 @@ const validFormUser = new FormValidator(validationConfig, '.form-user');
 const validFormPhoto = new FormValidator(validationConfig, '.form-add');
 
 validFormUser.enableValidation();
-validFormPhoto.enableValidation();
+validFormPhoto.enableValidation(); 

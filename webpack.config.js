@@ -52,4 +52,3 @@ module.exports = {
         new MiniCssExtractPlugin(), // использовали плагин
     ],
 }
-
