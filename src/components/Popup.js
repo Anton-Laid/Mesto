@@ -31,3 +31,5 @@ export default class Popup {
             this._handleClosePopupByOverlay(evt))
     }
 }
+
+console.log('test');
