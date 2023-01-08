@@ -9,7 +9,6 @@
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0);
     border: none;
-    transition: opacity .3s ease-in-out;
 }
 
 .popup__button-close:hover {

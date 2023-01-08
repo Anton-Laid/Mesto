@@ -7,7 +7,6 @@
     top: 8px;
     right: 19px;
     cursor: pointer;
-    transition: opacity .3s ease-in-out;
 }
 
 .profile__rectangle:hover {

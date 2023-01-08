@@ -4,11 +4,14 @@ import {
     popupUserInputJob,
     buttonPlus,
     photoContainer,
-    profileJob,
-    profileTitle,
+    popupFhoto,
+    popupUser,
+    popupFhotoAdd,
+    initialCards,
+    validationConfig,
 } from '../utils/constants.js';
 
-import { initialCards, validationConfig } from '../utils/utils.js'
+
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import { Section } from '../components/Section.js'
@@ -39,7 +42,7 @@ function generateCard(item, template) {
 
 //<--------------------------------- открытие карточки  --------------------------------->
 
-const openPopupFoto = new PopupWithImage('.popup-foto');
+const openPopupFoto = new PopupWithImage(popupFhoto);
 openPopupFoto.setEventListeners();
 
 //<--------------------------------- добавление новые карточки -------------------------->
@@ -56,7 +59,7 @@ const inputValues = new UserInfo({
 });
 
 
-const popupOpenProfile = new PopupWithForm('.popup-user', {
+const popupOpenProfile = new PopupWithForm(popupUser, {
     submitForm: ({ name, profession }) => {
         inputValues.setUserInfo(name, profession);
     },
@@ -66,7 +69,7 @@ popupOpenProfile.setEventListeners();
 
 //<--------------------------------- передача url и title  ------------------------->
 
-const openAddFoto = new PopupWithForm('.popup-add', {
+const openAddFoto = new PopupWithForm(popupFhotoAdd, {
     submitForm: ({ popuoTitle, popuoImage }) => {
         cardList.addItem(createInstanceCard(popuoTitle, popuoImage, '#template'));
     },
@@ -80,7 +83,7 @@ buttonOpenPopupUser.addEventListener('click', () => {
     popupOpenProfile.open();
     const inputList = inputValues.getUserInfo();
     popupUserInputName.value = inputList.name;
-    popupUserInputJob.value = inputList.job;
+    popupUserInputJob.value = inputList.profession;
     validFormUser.resetValidation();
 })
 
@@ -95,4 +98,4 @@ const validFormUser = new FormValidator(validationConfig, '.form-user');
 const validFormPhoto = new FormValidator(validationConfig, '.form-add');
 
 validFormUser.enableValidation();
-validFormPhoto.enableValidation(); 
+validFormPhoto.enableValidation();
