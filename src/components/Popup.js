@@ -1,5 +1,5 @@
 export default class Popup {
-    constructor(popup) {
+    constructor(popup) { // не понимаю по какой причине отправился прошлый commit, приношу свои извинения
         this._popup = popup;
         this._handleEscClose = this._handleEscClose.bind(this);
     }
