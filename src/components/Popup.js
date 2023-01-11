@@ -1,5 +1,7 @@
+import { escapeCode } from "../utils/constants";
+
 export default class Popup {
-    constructor(popup) { // не понимаю по какой причине отправился прошлый commit, приношу свои извинения
+    constructor(popup) {
         this._popup = popup;
         this._handleEscClose = this._handleEscClose.bind(this);
     }
@@ -21,7 +23,7 @@ export default class Popup {
     }
 
     _handleEscClose(evt) {
-        if (evt.key === 'Escape') {
+        if (evt.keyCode === escapeCode) {
             this.close();
         }
     }
@@ -30,4 +32,5 @@ export default class Popup {
         this._popup.addEventListener('click', (evt) =>
             this._handleClosePopupByOverlay(evt))
     }
+
 }

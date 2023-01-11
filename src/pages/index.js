@@ -11,7 +11,6 @@ import {
     validationConfig,
 } from '../utils/constants.js';
 
-
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import { Section } from '../components/Section.js'
@@ -20,7 +19,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import '../pages/index.css';
 
-//<--------------------------------- renderCards ------------------------------------------>
+//<--------------------------------- renderCards ------------------------------------>
 
 const cardList = new Section({
     items: initialCards,
@@ -40,24 +39,23 @@ function generateCard(item, template) {
     return addCard;
 }
 
-//<--------------------------------- открытие карточки  --------------------------------->
+//<--------------------------------- открытие карточки  ----------------------------->
 
 const openPopupFoto = new PopupWithImage(popupFhoto);
 openPopupFoto.setEventListeners();
 
-//<--------------------------------- добавление новые карточки -------------------------->
+//<--------------------------------- добавление новые карточки ---------------------->
 
 function createInstanceCard(name, link, templateSelector) {
     return generateCard({ name, link }, templateSelector);
 }
 
-//<--------------------------------- передача имени и описания  ------------------------->
+//<--------------------------------- передача имени и описания  -------------------->
 
 const inputValues = new UserInfo({
     name: '.profile__title',
     job: '.profile__subtitle'
 });
-
 
 const popupOpenProfile = new PopupWithForm(popupUser, {
     submitForm: ({ name, profession }) => {
@@ -67,7 +65,7 @@ const popupOpenProfile = new PopupWithForm(popupUser, {
 
 popupOpenProfile.setEventListeners();
 
-//<--------------------------------- передача url и title  ------------------------->
+//<--------------------------------- передача url и title  ------------------------>
 
 const openAddFoto = new PopupWithForm(popupFhotoAdd, {
     submitForm: ({ popuoTitle, popuoImage }) => {

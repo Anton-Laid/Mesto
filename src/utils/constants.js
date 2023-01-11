@@ -21,6 +21,7 @@ const popupFhotoTitle = document.querySelector('.popup-foto__title'); // мес�
 const popupFhoto = document.querySelector('.popup-foto'); // Сам popupFoto в котором карточка увеличина 
 //const buttonClosePopupFhoto = popupFhoto.querySelector('.popup__button-close'); // крестик который закрывает popupFoto
 //const form = document.querySelector('.popup__input');
+const escapeCode = 27;
 
 const initialCards = [ // Массив для стандартных карточек 
     {
@@ -78,5 +79,6 @@ export {
     popupFhotoTitle,
     popupFhoto,
     initialCards,
-    validationConfig
+    validationConfig,
+    escapeCode,
 }
