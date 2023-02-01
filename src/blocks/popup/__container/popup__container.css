@@ -1,5 +1,6 @@
-.form {
-    width: 282px;
+.popup__container {
+    width: 280px;
+    min-height: 181px;
     background-color: #fff;
     border-radius: 10px;
     margin: auto;
@@ -9,7 +10,7 @@
 }
 
 @media (min-width:1024px) {
-    .form {
+    .popup__container {
         width: 430px;
     }
 }

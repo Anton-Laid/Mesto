@@ -22,6 +22,9 @@ const popupFhoto = document.querySelector('.popup-foto'); // Сам popupFoto в
 //const buttonClosePopupFhoto = popupFhoto.querySelector('.popup__button-close'); // крестик который закрывает popupFoto
 //const form = document.querySelector('.popup__input');
 const escapeCode = 27;
+const avatarImage = document.querySelector('.profile__avatar-image');
+const buttonUpdateImagePopup = document.querySelector('.profile__avatar-button');
+const popupAvatar = document.querySelector('.popup-avatar');
 
 const initialCards = [ // Массив для стандартных карточек 
     {
@@ -81,4 +84,7 @@ export {
     initialCards,
     validationConfig,
     escapeCode,
+    avatarImage,
+    buttonUpdateImagePopup,
+    popupAvatar,
 }

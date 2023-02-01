@@ -3,6 +3,9 @@
     height: 288px;
     margin: 42px auto 0;
     color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 @media (min-width:340px) {

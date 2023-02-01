@@ -25,6 +25,7 @@ export default class Card {
         this._cardImage = this._element.querySelector('.photo__image');
         this._cardImage.alt = this._link;
         this._cardImage.src = this._image;
+        this._remove = this._element.querySelector('.photo__removel');
 
         this._setEventListener();
 

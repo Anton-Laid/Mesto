@@ -1,9 +1,9 @@
 .form__input-error {
     opacity: 0;
     display: block;
-    width: 242px;
+    width: 70%;
     height: 30px;
-    margin: 5px 22px 0;
+    margin: 5px 22px 15px;
 }
 
 @media (min-width: 1024px) {

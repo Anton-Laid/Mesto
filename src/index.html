@@ -12,11 +12,15 @@
     <div class="page">
         <header class="header">
             <img src="<%=require('../src/images/logo.svg')%>" alt=" Логотоип" class="header__logo">
-            <img src="<%%>" alt=" Логотоип" class="header__logo">
         </header>
         <main class="content">
             <section class="profile">
-                <div class="profile__image"></div>
+                <div class="profile__avatar">
+                    <img class="profile__avatar-image" alt=" Фото аватара">
+                    <!-- src="<%=require('../src/images/userAvatar.jpg')%> -->
+                    <button class="profile__avatar-button"></button>
+                </div>
+
                 <div class="profile__info">
                     <h1 class="profile__title">Anton Laid</h1>
                     <p class="profile__subtitle">See With New Eyes</p>
@@ -77,6 +81,39 @@
 
     </section>
 
+    <!-- Обновить аватар? -->
+
+    <section class="popup popup-avatar">
+
+        <div class="popup__container">
+            <form class="form form-avatar" name="imageAvatar" id="imageUser" novalidate>
+                <h2 class="popup__title">Обновить аватар</h2>
+
+                <input id="form-avatar" name="inputAvatar" required class="popup__input popup__avatar" type="url"
+                    placeholder="Ссылка на картинку" minlength="2" maxlength="200">
+                <span class="form-avatar-error form__input-error"></span>
+
+                <button class="popup__button" type="submit">Сохранить</button>
+                <button class="popup__button-close" type="button"></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Удаление карточки -->
+
+    <section class="popup popup-delete-card">
+
+        <div class="popup__container">
+            <form class="form form__delete-card">
+                <h2 class="popup__title">Вы уверены?</h2>
+                <button class="popup__button" type="submit">Да</button>
+                <button class="popup__button-close" type="button"></button>
+            </form>
+
+        </div>
+    </section>
+
+
     <!-- Открытие карточки  -->
     <div class="popup popup-foto">
         <div class="popup-foto__box">
@@ -87,13 +124,15 @@
         </div>
     </div>
 
-
-    <template id="template">
+    <template id="template" class="template">
         <div class="photo">
             <img src="#" alt="#" class="photo__image">
             <div class="photo__box">
                 <h2 class="photo__title"></h2>
-                <button class="photo__like" type="button"></button>
+                <div>
+                    <button class="photo__like" type="button"></button>
+                    <div class="photo__like-sum">0</div>
+                </div>
             </div>
             <button class="photo__removel"></button>
         </div>

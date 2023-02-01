@@ -19,6 +19,9 @@
 @import url('../blocks/profile/__title/profile__title.css');
 @import url('../blocks/profile/__rectangle/profile__rectangle.css');
 @import url('../blocks/profile/__vector/profile__vector.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__avatar-image.css/avatar-image.css');
+@import url('../blocks/profile/__avatar-button/avatar-button.css');
 
 /* Карточки */
 
@@ -30,6 +33,8 @@
 @import url('../blocks/photo/__image/photo__image.css');
 @import url('../blocks/photo/__title/photo__title.css');
 @import url('../blocks/photo/__removel/photo__removel.css');
+@import url('../blocks/photo/__like/__like-sum/photo__like-sum.css');
+@import url('../blocks/photo/__removel/__removel-active/photo__removel-active.css');
 
 /* Popup */
 
@@ -50,6 +55,11 @@
 @import url('../blocks/popup-foto/_opened/popup-foto_opened.css');
 @import url('../blocks/popup-foto/popup__foto.css');
 
+/* popup изменение аватара */
+
+
+/* popup для подтверждения удаления карточки */
+@import url('../blocks/popup/__container/popup__container.css');
 
 /* footer */
 @import url('../blocks/footer/footer.css');

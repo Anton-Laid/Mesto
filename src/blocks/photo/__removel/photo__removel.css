@@ -1,8 +1,9 @@
 .photo__removel {
     width: 18px;
     height: 18px;
+    display: none;
     background-size: cover;
-    background-image: url(../../../images/Urn.png);
+    background-image: url(../../../images/remove-button.svg);
     position: absolute;
     top: 20px;
     right: 20px;
@@ -14,5 +15,4 @@
 
 .photo__removel:hover {
     opacity: .5;
-    /* transform: scale(1.3); */
 }
