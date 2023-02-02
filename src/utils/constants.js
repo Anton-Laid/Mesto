@@ -1,3 +1,4 @@
+import Api from "../components/Api";
 const buttonOpenPopupUser = document.querySelector('.profile__rectangle'); // кнопка открытия PopupUser
 const popupUser = document.querySelector('.popup-user'); // Сам PopupГser окно для имени и профессии
 //const buttonClosePopupUser = popupUser.querySelector('.popup__button-close'); // Крестик закрытия PopupUser
@@ -25,37 +26,46 @@ const escapeCode = 27;
 const avatarImage = document.querySelector('.profile__avatar-image');
 const buttonUpdateImagePopup = document.querySelector('.profile__avatar-button');
 const popupAvatar = document.querySelector('.popup-avatar');
+const popupDeleteCard = document.querySelector('.popup-delete-card');
 
-const initialCards = [ // Массив для стандартных карточек 
-    {
-        name: 'Go...',
-        link: 'https://images.unsplash.com/photo-1671137513104-89166b4242f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+const api = new Api({
+    url: 'https://mesto.nomoreparties.co/v1/cohort-58',
+    headers: {
+        authorization: '7799ba30-cb0c-4e3e-9e29-b1e6d91978b5',
+        'Content-Type': 'application/json',
+    },
+});
 
-    },
-    {
-        name: 'Street',
-        link: 'https://images.unsplash.com/photo-1647292344198-85a68d728eef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+// const initialCards = [ // Массив для стандартных карточек 
+//     {
+//         name: 'Go...',
+//         link: 'https://images.unsplash.com/photo-1671137513104-89166b4242f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
 
-    },
-    {
-        name: 'Smoke',
-        link: 'https://images.unsplash.com/photo-1536779886223-e970e8019e5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+//     },
+//     {
+//         name: 'Street',
+//         link: 'https://images.unsplash.com/photo-1647292344198-85a68d728eef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
 
-    },
-    {
-        name: 'Metro',
-        link: 'https://images.unsplash.com/photo-1640033907202-e5dc78b9c8a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+//     },
+//     {
+//         name: 'Smoke',
+//         link: 'https://images.unsplash.com/photo-1536779886223-e970e8019e5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
 
-    },
-    {
-        name: 'New York',
-        link: 'https://images.unsplash.com/photo-1498447817931-2edda1605b97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-    },
-    {
-        name: 'Japan',
-        link: 'https://images.unsplash.com/photo-1671272043051-f8a68b8e439f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    }
-];
+//     },
+//     {
+//         name: 'Metro',
+//         link: 'https://images.unsplash.com/photo-1640033907202-e5dc78b9c8a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+
+//     },
+//     {
+//         name: 'New York',
+//         link: 'https://images.unsplash.com/photo-1498447817931-2edda1605b97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+//     },
+//     {
+//         name: 'Japan',
+//         link: 'https://images.unsplash.com/photo-1671272043051-f8a68b8e439f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+//     }
+// ];
 
 const validationConfig = {
     formSelector: '.popup',
@@ -81,10 +91,11 @@ export {
     fhotoCardAdd,
     popupFhotoTitle,
     popupFhoto,
-    initialCards,
     validationConfig,
     escapeCode,
     avatarImage,
     buttonUpdateImagePopup,
     popupAvatar,
+    api,
+    popupDeleteCard,
 }

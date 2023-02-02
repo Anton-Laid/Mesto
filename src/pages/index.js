@@ -9,11 +9,12 @@ import {
     popupFhoto,
     popupUser,
     popupFhotoAdd,
-    initialCards,
     validationConfig,
     avatarImage,
     buttonUpdateImagePopup,
     popupAvatar,
+    api,
+    popupDeleteCard,
 } from '../utils/constants.js';
 
 import Card from '../components/Card.js'
@@ -22,30 +23,24 @@ import { Section } from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import Api from '../components/Api';
+import Popup from '../components/Popup';
+import PopupWithConfirm from '../components/PopupWithConfirm';
 
 //<--------------------------------- API ------------------------------------>
 
-const api = new Api({
-    url: 'https://mesto.nomoreparties.co/v1/cohort-58',
-    headers: {
-        authorization: '7799ba30-cb0c-4e3e-9e29-b1e6d91978b5',
-        'Content-Type': 'application/json',
-    }
-})
-
 api.getInfoUser()
     .then((data) => {
-        inputValues.setUserInfo(data.name, data.about);
-        updateAvatar(data)
-        // transferUserId(data._id)
+        inputValues.setUserInfo(data.name, data.about, data.avatar);
+        inputValues.getAvatar(data.avatar);
+        userId = data
     })
 
 //<--------------------------------- передача имени и описания  -------------------->
 
 const inputValues = new UserInfo({
     name: '.profile__title',
-    job: '.profile__subtitle'
+    job: '.profile__subtitle',
+    avatar: '.profile__avatar-image'
 });
 
 const popupOpenProfile = new PopupWithForm(popupUser, {
@@ -57,48 +52,70 @@ const popupOpenProfile = new PopupWithForm(popupUser, {
     },
 });
 
-
-function updateAvatar(data) {
-    avatarImage.src = data.avatar;
-}
-
-
 //<--------------------------------- renderCards ------------------------------------>
-
-const cardList = new Section({
-    items: initialCards,
-    renderer: (item) => cardList.addItem(generateCard(item, '#template'))
-}, photoContainer);
-
-cardList.renderCard();
 
 function generateCard(item, template) {
     const card = new Card(item, template, {
         handleCardClick: (link, name) => {
             openPopupFoto.open(link, name);
-        }
-    })
-    const addCard = card.generateCard();
+        },
+        handleDeleteClick: (data) => {
+            openPopupDeletePhoto.open()
+            openPopupDeletePhoto.setSubmitAction(() => {
 
+                api.deleteCard(data._id)
+                    .then(() => {
+                        card.handleDeleteCard();
+                        openPopupDeletePhoto.close();
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            })
+        }
+    }, userId)
+
+    const addCard = card.generateCard();
     return addCard;
+}
+
+//<-------------------------- появление стандартных карточек ------------------------>
+
+api.getCardsList()
+    .then((res) => {
+        addAllCard(res)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+
+const addAllCard = (item) => {
+    const cardList = new Section({
+        items: item,
+        renderer: (item) => cardList.addItem(generateCard(item, '#template'))
+    }, photoContainer);
+
+    cardList.renderCard();
 }
 
 //<--------------------------------- открытие карточки  ----------------------------->
 
-const openPopupFoto = new PopupWithImage(popupFhoto);
-
-
-//<--------------------------------- добавление новые карточки ---------------------->
-
-function createInstanceCard(name, link, templateSelector) {
-    return generateCard({ name, link }, templateSelector);
-}
+export const openPopupFoto = new PopupWithImage(popupFhoto);
 
 //<--------------------------------- передача url и title  ------------------------>
 
 const openAddFoto = new PopupWithForm(popupFhotoAdd, {
     submitForm: ({ popuoTitle, popuoImage }) => {
-        cardList.addItem(createInstanceCard(popuoTitle, popuoImage, '#template'));
+        api
+            .getNewCard(popuoTitle, popuoImage)
+            .then((res) => {
+                const container = document.querySelector('.photos')
+                container.prepend(generateCard(res, '#template'));
+                openAddFoto.close();
+            })
+            .catch((err) => {
+                console.log(err.status);
+            });
     },
 });
 
@@ -110,14 +127,20 @@ const openAvatarImage = new PopupWithForm(popupAvatar, {
             .then((data) => {
                 avatarImage.src = data.avatar;
             })
+            .catch(err => {
+                console.log(err);
+            })
     },
 });
+
+const openPopupDeletePhoto = new PopupWithConfirm(popupDeleteCard);
 
 //<--------------------------------- ивенты попапов ------------------------------->
 
 openAvatarImage.setEventListeners();
 openAddFoto.setEventListeners();
 popupOpenProfile.setEventListeners();
+openPopupDeletePhoto.setEventListeners();
 
 //<--------------------------------- evt на bt  ----------------------------------->
 
@@ -140,7 +163,7 @@ buttonUpdateImagePopup.addEventListener('click', () => {
 })
 
 openPopupFoto.setEventListeners();
-
+let userId
 
 //<--------------------------------- валидация inputs  ---------------------------->
 

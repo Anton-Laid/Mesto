@@ -41,9 +41,33 @@ class Api {
             .then(this._response)
     }
 
+    getCardsList() {
+        return fetch(`${this._url}/cards`, {
+            headers: this._headers
+        })
+            .then(this._response)
+    }
+
+    getNewCard(popuoTitle, popuoImage) {
+        return fetch(`${this._url}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: popuoTitle,
+                link: popuoImage,
+            })
+        })
+            .then(this._response)
+    }
+
+    deleteCard(id) {
+        return fetch(`${this._url}/cards/${id}`, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+            .then(this._response)
+    }
 }
-
-
 
 
 export default Api
