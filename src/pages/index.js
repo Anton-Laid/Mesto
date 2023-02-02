@@ -45,9 +45,13 @@ const inputValues = new UserInfo({
 
 const popupOpenProfile = new PopupWithForm(popupUser, {
     submitForm: ({ name, profession }) => {
+        renderLoadingButtonUser.renderLoadingSave(true)
         api.getRedactProfile({ name, profession })
             .then(data => {
                 inputValues.setUserInfo(data.name, data.about);
+            })
+            .finally(() => {
+                renderLoadingButtonUser.renderLoadingSave(false)
             })
     },
 });
@@ -62,7 +66,6 @@ function generateCard(item, template) {
         handleDeleteClick: (data) => {
             openPopupDeletePhoto.open()
             openPopupDeletePhoto.setSubmitAction(() => {
-
                 api.deleteCard(data._id)
                     .then(() => {
                         card.handleDeleteCard();
@@ -106,6 +109,7 @@ export const openPopupFoto = new PopupWithImage(popupFhoto);
 
 const openAddFoto = new PopupWithForm(popupFhotoAdd, {
     submitForm: ({ popuoTitle, popuoImage }) => {
+        renderLoadingButtonFhotoAdd.renderLoadingCreate(true)
         api
             .getNewCard(popuoTitle, popuoImage)
             .then((res) => {
@@ -115,7 +119,10 @@ const openAddFoto = new PopupWithForm(popupFhotoAdd, {
             })
             .catch((err) => {
                 console.log(err.status);
-            });
+            })
+            .finally(() => {
+                renderLoadingButtonFhotoAdd.renderLoadingCreate(false)
+            })
     },
 });
 
@@ -123,6 +130,7 @@ const openAddFoto = new PopupWithForm(popupFhotoAdd, {
 
 const openAvatarImage = new PopupWithForm(popupAvatar, {
     submitForm: ({ inputAvatar }) => {
+        renderLoadingButtonAvatar.renderLoadingSave(true)
         api.getAvatarUser({ inputAvatar })
             .then((data) => {
                 avatarImage.src = data.avatar;
@@ -130,10 +138,17 @@ const openAvatarImage = new PopupWithForm(popupAvatar, {
             .catch(err => {
                 console.log(err);
             })
+            .finally(() => {
+                renderLoadingButtonAvatar.renderLoadingSave(false)
+            })
     },
 });
 
 const openPopupDeletePhoto = new PopupWithConfirm(popupDeleteCard);
+const renderLoadingButtonUser = new PopupWithConfirm(popupUser);
+const renderLoadingButtonAvatar = new PopupWithConfirm(popupAvatar);
+const renderLoadingButtonFhotoAdd = new PopupWithConfirm(popupFhotoAdd);
+
 
 //<--------------------------------- ивенты попапов ------------------------------->
 

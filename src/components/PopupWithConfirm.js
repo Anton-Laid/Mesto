@@ -22,7 +22,17 @@ class PopupWithConfirm extends Popup {
         this._handleSubmitCallback = action
     }
 
+    renderLoadingSave(isLoading) {
+        isLoading
+            ? this._submitButton.textContent = 'Сохранение...'
+            : this._submitButton.textContent = this._popupButtonTextContent;
+    }
 
+    renderLoadingCreate(isLoading) {
+        isLoading
+            ? this._submitButton.textContent = 'Создается...'
+            : this._submitButton.textContent = this._popupButtonTextContent;
+    }
 }
 
 export default PopupWithConfirm
