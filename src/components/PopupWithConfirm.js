@@ -1,6 +1,6 @@
 import Popup from "./Popup";
 
-class PopupWithConfirm extends Popup {
+export default class PopupWithConfirm extends Popup {
     constructor(popup) {
         super(popup)
 
@@ -33,6 +33,8 @@ class PopupWithConfirm extends Popup {
             ? this._submitButton.textContent = 'Создается...'
             : this._submitButton.textContent = this._popupButtonTextContent;
     }
-}
 
-export default PopupWithConfirm
+    close() {
+        super.close()
+    }
+}
