@@ -23,7 +23,6 @@ import { Section } from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import Popup from '../components/Popup';
 import PopupWithConfirm from '../components/PopupWithConfirm';
 
 //<--------------------------------- API ------------------------------------>
@@ -64,23 +63,39 @@ function generateCard(item, template) {
             openPopupFoto.open(link, name);
         },
         handleDeleteClick: (data) => {
-            openPopupDeletePhoto.open()
-            openPopupDeletePhoto.setSubmitAction(() => {
+            loadingDeleteCard.open()
+            loadingDeleteCard.setSubmitAction(() => {
                 api.deleteCard(data._id)
                     .then(() => {
                         card.handleDeleteCard();
-                        openPopupDeletePhoto.close();
+                        loadingDeleteCard.close();
                     })
                     .catch((err) => {
                         console.log(err);
                     })
             })
+        },
+        likeCard: (id) => {
+            api.addLike(id._id)
+                .then((data) => {
+                    card.likesAdd()
+                    card.sumLike(data.likes.length);
+                });
+        },
+        dislikeCard: (id) => {
+            api.removeLike(id._id)
+                .then((data) => {
+                    card.likesDel()
+                    card.sumLike(data.likes.length);
+                });
         }
     }, userId)
 
     const addCard = card.generateCard();
+
     return addCard;
 }
+
 
 //<-------------------------- появление стандартных карточек ------------------------>
 
@@ -156,6 +171,7 @@ openAvatarImage.setEventListeners();
 openAddFoto.setEventListeners();
 popupOpenProfile.setEventListeners();
 openPopupDeletePhoto.setEventListeners();
+openPopupFoto.setEventListeners();
 
 //<--------------------------------- evt на bt  ----------------------------------->
 
@@ -177,7 +193,6 @@ buttonUpdateImagePopup.addEventListener('click', () => {
     validFormAvatar.resetValidation();
 })
 
-openPopupFoto.setEventListeners();
 let userId
 
 //<--------------------------------- валидация inputs  ---------------------------->
