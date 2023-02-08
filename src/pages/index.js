@@ -159,7 +159,7 @@ const openAvatarImage = new PopupWithForm(popupAvatar, {
         openAvatarImage.loadingSubmit(true)
         api.getAvatarUser({ inputAvatar })
             .then((data) => {
-                avatarImage.src = data.avatar;
+                inputValues.getAvatar(data);
                 openAvatarImage.close();
             })
             .catch(err => {
