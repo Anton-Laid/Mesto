@@ -6,7 +6,6 @@ export default class PopupWithConfirm extends Popup {
 
         this._popupForm = this._popup.querySelector('.form');
         this._submitButton = this._popupForm.querySelector('.popup__button');
-        this._popupButtonTextContent = this._submitButton.textContent;
     }
 
     setEventListeners() {
@@ -20,18 +19,6 @@ export default class PopupWithConfirm extends Popup {
 
     setSubmitAction(action) {
         this._handleSubmitCallback = action
-    }
-
-    renderLoadingSave(isLoading) {
-        isLoading
-            ? this._submitButton.textContent = 'Сохранение...'
-            : this._submitButton.textContent = this._popupButtonTextContent;
-    }
-
-    renderLoadingCreate(isLoading) {
-        isLoading
-            ? this._submitButton.textContent = 'Создается...'
-            : this._submitButton.textContent = this._popupButtonTextContent;
     }
 
     close() {

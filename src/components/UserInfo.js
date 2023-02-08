@@ -12,12 +12,12 @@ export default class UserInfo {
         }
     }
 
-    setUserInfo(nameAdd, jobAdd) {
-        this._nameUser.textContent = nameAdd;
-        this._jobUser.textContent = jobAdd;
+    setUserInfo(userData) {
+        this._nameUser.textContent = userData.name;
+        this._jobUser.textContent = userData.about;
     }
 
     getAvatar(avatar) {
-        this._avatar.src = avatar;
+        this._avatar.src = avatar.avatar;
     }
 }

@@ -32,7 +32,7 @@ export default class Card {
         this._likeContainer = this._element.querySelector('.photo__like-sum');
 
         this.title.textContent = this._name;
-        this._cardImage.alt = this._image;
+        this._cardImage.alt = this._name;
         this._cardImage.src = this._image;
         this._likeContainer.textContent = this._arrayCardLikes.length;
 

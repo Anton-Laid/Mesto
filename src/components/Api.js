@@ -13,6 +13,13 @@ export default class Api {
 
     getInfoUser() {
         return fetch(`${this._url}/users/me`, {
+            headers: this._headers,
+        })
+            .then(this._response)
+    }
+
+    getCardsList() {
+        return fetch(`${this._url}/cards`, {
             headers: this._headers
         })
             .then(this._response)
@@ -37,13 +44,6 @@ export default class Api {
             body: JSON.stringify({
                 avatar: data.inputAvatar,
             })
-        })
-            .then(this._response)
-    }
-
-    getCardsList() {
-        return fetch(`${this._url}/cards`, {
-            headers: this._headers
         })
             .then(this._response)
     }

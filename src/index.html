@@ -11,13 +11,12 @@
 <body class="body">
     <div class="page">
         <header class="header">
-            <img src="<%=require('../src/images/logo.svg')%>" alt=" Логотоип" class="header__logo">
+            <img src="<%=require('../src/images/logo.svg')%>" class="header__logo" alt="лого" />
         </header>
         <main class="content">
             <section class="profile">
                 <div class="profile__avatar">
-                    <img class="profile__avatar-image" alt=" Фото аватара">
-                    <!-- src="<%=require('../src/images/userAvatar.jpg')%> -->
+                    <img class="profile__avatar-image" src="<%=require('../src/images/image.jpg')%>" alt="аватар" />
                     <button class="profile__avatar-button"></button>
                 </div>
 
@@ -28,7 +27,7 @@
                             src="<%=require('../src/images/Vector__pensol.png')%>" class="profile__vector"></button>
                 </div>
                 <button type="button" class="profile__button"><img src="<%=require('../src/images/Vector__plus.png')%>"
-                        alt="Плюс">
+                        alt="плюс" />
                 </button>
             </section>
             <!--  Фото контейнер -->
@@ -124,7 +123,8 @@
 
     <template id="template" class="template">
         <div class="photo">
-            <img src="#" alt="#" class="photo__image">
+            <img src="../src/images/heart.png" alt="Фото" class="photo__image">
+            <!-- <img src="#" class="photo__image" alt="#" /> -->
             <div class="photo__box">
                 <h2 class="photo__title"></h2>
                 <div>
@@ -135,6 +135,7 @@
             <button class="photo__removel"></button>
         </div>
     </template>
+
 </body>
 
 </html>

@@ -5,13 +5,17 @@ export class Section {
         this._container = container;
     }
 
-    renderCard() {
-        this._items.reverse().forEach((item) =>
+    renderCard(element) {
+        element.forEach((item) =>
             this._renderer(item)
         )
     }
 
     addItem(element) {
+        this._container.append(element);
+    }
+
+    prependElement(element) {
         this._container.prepend(element);
     }
 }

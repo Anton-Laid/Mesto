@@ -27,13 +27,15 @@ import PopupWithConfirm from '../components/PopupWithConfirm';
 
 //<--------------------------------- API ------------------------------------>
 
-api.getInfoUser()
-    .then((data) => {
-        inputValues.setUserInfo(data.name, data.about, data.avatar);
-        inputValues.getAvatar(data.avatar);
-        userId = data
+Promise.all([api.getInfoUser(), api.getCardsList()])
+    // тут деструктурируете ответ от сервера
+    .then(([userData, cards]) => {
+        inputValues.setUserInfo(userData);
+        inputValues.getAvatar(userData);
+        userId = userData;
+        defaultCardList.renderCard(cards);
     })
-    .catch(err => {
+    .catch((err) => {
         console.log(err);
     })
 
@@ -47,19 +49,22 @@ const inputValues = new UserInfo({
 
 const popupOpenProfile = new PopupWithForm(popupUser, {
     submitForm: ({ name, profession }) => {
-        loadingUser.renderLoadingSave(true)
+        popupOpenProfile.loadingSubmit(true)
         api.getRedactProfile({ name, profession })
             .then(data => {
-                inputValues.setUserInfo(data.name, data.about);
+                inputValues.setUserInfo(data);
+                popupOpenProfile.close();
             })
             .catch(err => {
                 console.log(err);
             })
             .finally(() => {
-                loadingUser.renderLoadingSave(false)
+                popupOpenProfile.loadingSubmit(false)
             })
     },
 });
+
+popupOpenProfile.setEventListeners();
 
 //<--------------------------------- renderCards ------------------------------------>
 
@@ -69,12 +74,12 @@ function generateCard(item, template) {
             openPopupFoto.open(link, name);
         },
         handleDeleteClick: (data) => {
-            loadingDeleteCard.open()
-            loadingDeleteCard.setSubmitAction(() => {
+            popupDelete.open()
+            popupDelete.setSubmitAction(() => {
                 api.deleteCard(data._id)
                     .then(() => {
                         card.handleDeleteCard();
-                        loadingDeleteCard.close();
+                        popupDelete.close();
                     })
                     .catch((err) => {
                         console.log(err);
@@ -86,14 +91,20 @@ function generateCard(item, template) {
                 .then((data) => {
                     card.likesAdd()
                     card.sumLike(data.likes.length);
-                });
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         },
         dislikeCard: (id) => {
             api.removeLike(id._id)
                 .then((data) => {
                     card.likesDel()
                     card.sumLike(data.likes.length);
-                });
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     }, userId)
 
@@ -102,83 +113,65 @@ function generateCard(item, template) {
     return addCard;
 }
 
+const popupDelete = new PopupWithConfirm(popupDeleteCard);
 
+popupDelete.setEventListeners();
 
-//<-------------------------- появление стандартных карточек ------------------------>
+//<-------------------------- добавление карточек ------------------------>
 
-api.getCardsList()
-    .then((res) => {
-        addAllCard(res)
-    })
-    .catch(err => {
-        console.log(err);
-    })
-
-const addAllCard = (item) => {
-    const cardList = new Section({
-        items: item,
-        renderer: (item) => cardList.addItem(generateCard(item, '#template'))
-    }, photoContainer);
-
-    cardList.renderCard();
-}
+const defaultCardList = new Section({
+    renderer: (item) => defaultCardList.addItem(generateCard(item, '#template'))
+}, photoContainer);
 
 //<--------------------------------- открытие карточки  ----------------------------->
 
-export const openPopupFoto = new PopupWithImage(popupFhoto);
+const openPopupFoto = new PopupWithImage(popupFhoto);
+
+openPopupFoto.setEventListeners()
+
 
 //<--------------------------------- передача url и title  ------------------------>
 
 const openAddFoto = new PopupWithForm(popupFhotoAdd, {
     submitForm: ({ popuoTitle, popuoImage }) => {
-        loadingFhotoAdd.renderLoadingCreate(true)
+        openAddFoto.loadingSubmit(true);
         api
             .getNewCard(popuoTitle, popuoImage)
             .then((res) => {
-                const container = document.querySelector('.photos')
-                container.prepend(generateCard(res, '#template'));
+                defaultCardList.prependElement(generateCard(res, '#template'));
                 openAddFoto.close();
             })
             .catch((err) => {
                 console.log(err.status);
             })
             .finally(() => {
-                loadingFhotoAdd.renderLoadingCreate(false)
+                openAddFoto.loadingSubmit(false)
             })
     },
 });
+
+openAddFoto.setEventListeners();
 
 //<--------------------------------- передача изменение аватарки ------------------------>
 
 const openAvatarImage = new PopupWithForm(popupAvatar, {
     submitForm: ({ inputAvatar }) => {
-        loadingAvatar.renderLoadingSave(true)
+        openAvatarImage.loadingSubmit(true)
         api.getAvatarUser({ inputAvatar })
             .then((data) => {
                 avatarImage.src = data.avatar;
+                openAvatarImage.close();
             })
             .catch(err => {
                 console.log(err);
             })
             .finally(() => {
-                loadingAvatar.renderLoadingSave(false)
+                openAvatarImage.loadingSubmit(false)
             })
     },
 });
 
-const loadingDeleteCard = new PopupWithConfirm(popupDeleteCard);
-const loadingUser = new PopupWithConfirm(popupUser);
-const loadingAvatar = new PopupWithConfirm(popupAvatar);
-const loadingFhotoAdd = new PopupWithConfirm(popupFhotoAdd);
-
-
-//<--------------------------------- ивенты попапов ------------------------------->
-
 openAvatarImage.setEventListeners();
-openAddFoto.setEventListeners();
-popupOpenProfile.setEventListeners();
-loadingDeleteCard.setEventListeners();
-openPopupFoto.setEventListeners();
 
 //<--------------------------------- evt на bt  ----------------------------------->
 
